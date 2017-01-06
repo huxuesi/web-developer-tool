@@ -6,6 +6,7 @@ class IndexController extends PublicController {
   	$ipaddress = M("ipaddress");
 		$res = $ipaddress->select();
 		dump($res);
+		
   	echo "这是首页！";
 	}
 }
