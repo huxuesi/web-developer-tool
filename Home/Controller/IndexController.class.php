@@ -29,6 +29,8 @@ class IndexController extends PublicController {
     $city = $IPinfo->data->city;
     $address = $province.$city;
 		
+		echo $address;
+		
 		$data['ip'] = ip2long($IPaddress);
 		$data['address'] = $address;
 		$data['time'] = time();
