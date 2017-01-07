@@ -24,7 +24,12 @@ class IndexController extends PublicController {
 		}
 
 		$taobaoIP = 'http://ip.taobao.com/service/getIpInfo.php?ip='.$IPaddress;
-    $IPinfo = json_decode(file_get_contents($taobaoIP));
+		$curl = curl_init();
+	  curl_setopt($curl, CURLOPT_URL, $taobaoIP);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+	  $output = curl_exec($curl);
+	  curl_close($curl);
+    $IPinfo = json_decode($output);
     $province = $IPinfo->data->region;
     $city = $IPinfo->data->city;
     $address = $province.$city;
