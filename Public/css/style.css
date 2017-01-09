@@ -1,0 +1,16 @@
+.xs-nav-topwrap{
+	height: 65px;
+}
+.xs-left-group>a.list-group-item{
+	background: #101010;
+	color: #fff;
+}
+.xs-left-group .xs-collapse-a a{
+	text-indent: 15px;
+}
+
+.foot{
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+}

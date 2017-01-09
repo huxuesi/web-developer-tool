@@ -32,12 +32,14 @@ class IndexController extends PublicController {
 	  curl_close($curl);
 		
     $IPinfo = json_decode($output);
-    $province = $IPinfo->data->region;
-    $city = $IPinfo->data->city;
-    $address = $province.$city;
-		
-		echo $address;
-		
+		if( !empty($IPinfo) ){
+			$province = $IPinfo->data->region;
+	    $city = $IPinfo->data->city;
+	    $address = $province.$city;
+		}else{
+			$address = "获取地址失败";
+		}
+
 		$data['ip'] = ip2long($IPaddress);
 		$data['address'] = $address;
 		$data['time'] = time();
