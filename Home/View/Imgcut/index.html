@@ -54,17 +54,9 @@
 <script src="_JSPATH_/jquery.form.js"></script>
 <script>
 	$(function(){
-		var root = "__ROOT__";
-		alert(root)
 		var currnav = "{$currnav}";
 		$(".list-group-item[data-hover='" + currnav + "']").addClass("active")
-		$('#startup').click(function(){
-	    		$('#imgcutform').ajaxSubmit(function(msg){
-	    			alert(msg)
-	    			$('#inputurl').val('http://tool.akphp.com/'+msg)
-	    			$('#imgcutmodal').modal('hide')
-	    		})
-	    	})
+		
 		$('#filer_input').filer({
 			limit: 1,
 	    showThumbs: true,
@@ -126,7 +118,13 @@
         }
 	    },
 	    onSelect: function(){
-	    	
+	    	$('#startup').click(function(){
+		  		$('#imgcutform').ajaxSubmit(function(msg){
+		  			alert(msg)
+		  			$('#inputurl').val("{$Think.config.FULL_HOST}"+msg)
+		  			$('#imgcutmodal').modal('hide')
+		  		})
+		  	})
 	    },
 	   	captions:{
 		    button: "选择文件",
