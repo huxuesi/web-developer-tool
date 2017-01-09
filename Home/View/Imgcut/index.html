@@ -1,10 +1,146 @@
 <include file="Index/head" title="图片裁剪" />
 
-
 		<div class="container-fluid">
 			<div class="row">
 				<include file="Index/leftnav" />
+				<div class="col-md-10">
+					<div class="box-border">
+						<h4>图片裁剪</h4>
+						<form action="" role="form">
+							<div class="form-group">
+						    <div class="input-group col-lg-6">
+						      <span class="input-group-btn">
+						        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#imgcutmodal">上传图片</button>
+						      </span>
+						      <input type="text" id="inputurl" class="form-control" placeholder="点击上传图片按钮或直接输入图片URL即可开始处理图片">
+						    </div>
+							</div>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
-
+		
+		<link rel="stylesheet" href="_CSSPATH_/jquery.filer.css" />
+		<link rel="stylesheet" href="_CSSPATH_/jquery.filer-dragdropbox-theme.css" />
+		<!--图片裁剪上传表单模态框-->
+		<div class="modal fade" id="imgcutmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+	  	  <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title">图片上传</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>
+		        	<form action="{:U('Imgcut/imgup')}" id="imgcutform" role="form" method="post" enctype="multipart/form-data">
+		        		<div class="form-group">
+		        			<!--<input type="file" name="imgup" class="form-control">-->
+		        			<input type="file" name="file" id="filer_input" multiple="multiple">
+		        		</div>
+      				</form>
+		        </p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		        <button type="submit" class="btn btn-primary" id="startup">开始上传</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 <include file="Index/foot" />
+
+<script src="_JSPATH_/jquery.filer.min.js"></script>
+<script src="_JSPATH_/jquery.form.js"></script>
+<script>
+	$(function(){
+		var root = "__ROOT__";
+		alert(root)
+		var currnav = "{$currnav}";
+		$(".list-group-item[data-hover='" + currnav + "']").addClass("active")
+		$('#startup').click(function(){
+	    		$('#imgcutform').ajaxSubmit(function(msg){
+	    			alert(msg)
+	    			$('#inputurl').val('http://tool.akphp.com/'+msg)
+	    			$('#imgcutmodal').modal('hide')
+	    		})
+	    	})
+		$('#filer_input').filer({
+			limit: 1,
+	    showThumbs: true,
+	    extensions: ['jpg', 'jpeg', 'png', 'gif'],
+	    templates: {
+        box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
+        item: '<li class="jFiler-item">\
+                    <div class="jFiler-item-container">\
+                        <div class="jFiler-item-inner">\
+                            <div class="jFiler-item-thumb">\
+                                <div class="jFiler-item-status"></div>\
+                                <div class="jFiler-item-info">\
+                                    <span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
+                                    <span class="jFiler-item-others">{{fi-size2}}</span>\
+                                </div>\
+                                {{fi-image}}\
+                            </div>\
+                            <div class="jFiler-item-assets jFiler-row">\
+                                <ul class="list-inline pull-left">\
+                                    <li>{{fi-progressBar}}</li>\
+                                </ul>\
+                                <ul class="list-inline pull-right">\
+                                    <li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
+                                </ul>\
+                            </div>\
+                        </div>\
+                    </div>\
+                </li>',
+        itemAppend: '<li class="jFiler-item">\
+                        <div class="jFiler-item-container">\
+                            <div class="jFiler-item-inner">\
+                                <div class="jFiler-item-thumb">\
+                                    <div class="jFiler-item-status"></div>\
+                                    <div class="jFiler-item-info">\
+                                        <span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
+                                        <span class="jFiler-item-others">{{fi-size2}}</span>\
+                                    </div>\
+                                    {{fi-image}}\
+                                </div>\
+                                <div class="jFiler-item-assets jFiler-row">\
+                                    <ul class="list-inline pull-left">\
+                                        <li><span class="jFiler-item-others">{{fi-icon}}</span></li>\
+                                    </ul>\
+                                    <ul class="list-inline pull-right">\
+                                        <li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
+                                    </ul>\
+                                </div>\
+                            </div>\
+                        </div>\
+                    </li>',
+        progressBar: '<div class="bar"></div>',
+        itemAppendToEnd: true,
+        removeConfirmation: false,
+        _selectors: {
+            list: '.jFiler-items-list',
+            item: '.jFiler-item',
+            progressBar: '.bar',
+            remove: '.jFiler-item-trash-action'
+        }
+	    },
+	    onSelect: function(){
+	    	
+	    },
+	   	captions:{
+		    button: "选择文件",
+		    feedback: "选择上传的文件",
+		    feedback2: "个文件被选择",
+		    drop: "把文件拖动到这里上传",
+		    removeConfirmation: "确定删除这个文件?",
+		    errors: {
+	        filesLimit: "只能上传 {{fi-limit}} 个文件.",
+	        filesType: "只能上传图像文件.",
+	        filesSize: "{{fi-name}} 太大了，允许上传的文件最大为 {{fi-maxSize}} MB.",
+	        filesSizeAll: "你选择的文件太大了，允许上传的文件最大为 {{fi-maxSize}} MB."
+		    }
+			}
+		});
+	})
+</script>

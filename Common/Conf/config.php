@@ -18,6 +18,16 @@ return array(
 		'_IMGPATH_' => __ROOT__.'/Public/images'
 	),
 
+	//设置前台图片上传格式
+	'HOME_UPIMG' => array(
+		'maxSize' => 5145728,															//设置文件上传大小
+		'exts' => array('jpg', 'gif', 'png', 'jpeg'),			//设置文件上传类型
+		'rootPath' => "./",																//设置文件上传根目录
+		'savePath' => 'Public/uploads/home/',							//设置附件上传（子）目录
+		'subName' => array('date','Ymd'),									//子目录命名格式
+		'saveName' => date('Ymd',time()).time().mt_rand().mt_rand()		//文件命名防重复
+	),
+
 	'DEFAULT_MODULE' => 'Home',		//设置请求的默认分组
 	'MODULE_ALLOW_LIST' => array('Home','Admin'),	//设置对比的分组列表
 	

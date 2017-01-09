@@ -6,11 +6,34 @@
 	color: #fff;
 }
 .xs-left-group .xs-collapse-a a{
-	text-indent: 15px;
+	text-indent: 30px;
 }
 
 .foot{
 	height: 30px;
 	line-height: 30px;
 	text-align: center;
+}
+
+.box-border{
+	border: 1px solid #ddd;
+	margin-left: -15px;
+	padding-left: 15px;
+	border-radius: 4px;
+}
+
+.xs-left-group{
+	margin-bottom: 0;
+}
+.xs-left-group:last-child{
+	margin-bottom: 20px;
+}
+.xs-left-group .xs-collapse-a a.list-group-item:first-child{
+	border-radius: 0;
+}
+
+.xs-collapse-a .list-group-item.active{
+	background-color: #583979;
+	border-color: #ddd;
+	border-top-color: #583979;
 }
