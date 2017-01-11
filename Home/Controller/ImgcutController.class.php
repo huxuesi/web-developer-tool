@@ -25,7 +25,7 @@ class ImgcutController extends PublicController {
 		if( is_numeric( I('post.width') ) && is_numeric( I('post.height') ) && is_numeric( I('post.x1') ) && is_numeric( I('post.y1') ) && I('post.imgurl')!='' ){
 			$imgurl = I('post.imgurl');
 			$image = new \Think\Image();
-			$image->open( $imgurl );
+			$image->open( './'.$imgurl );
 			//创建目录
 			$path="./Public/uploads/imgout/".date("Ymd",time());
 			if(!is_dir($path)){

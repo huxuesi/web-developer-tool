@@ -180,7 +180,7 @@
 	    		$('.bg-mask').show()
 		  		$('#imgupform').ajaxSubmit(function(msg){
 		  			$('#inputurl').val("{$Think.config.FULL_HOST}"+msg)
-		  			$('#imgurl').val('./' + msg)
+		  			$('#imgurl').val(msg)
 						//$('#imgcutimgsrc').attr('src', '{$Think.config.FULL_HOST}'+msg)
 		  			$('#imgcutmodal').modal('hide')
 		  			initJcrop(msg)
