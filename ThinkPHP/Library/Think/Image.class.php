@@ -88,8 +88,8 @@ class Image{
      * @param  boolean $interlace 是否对JPEG类型图片设置隔行扫描
      * @return Object             当前图片处理库对象
      */
-    public function save($imgname, $type = null, $quality=80,$interlace = true){
-        $this->img->save($imgname, $type, $quality,$interlace);
+    public function save($imgname, $type = null, $quality=100, $interlace = true){
+        $this->img->save($imgname, $type, $quality, $interlace);
         return $this;
     }
 
