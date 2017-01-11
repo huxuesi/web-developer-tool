@@ -22,7 +22,7 @@ return array(
 
 	//设置前台图片上传格式
 	'HOME_UPIMG' => array(
-		'maxSize' => 5145728,															//设置文件上传大小
+		'maxSize' => 7145728,															//设置文件上传大小
 		'exts' => array('jpg', 'gif', 'png', 'jpeg'),			//设置文件上传类型
 		'rootPath' => "./",																//设置文件上传根目录
 		'savePath' => 'Public/uploads/home/',							//设置附件上传（子）目录
