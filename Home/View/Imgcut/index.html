@@ -185,7 +185,7 @@
 		  			$('#inputurl').val("{$Think.config.FULL_HOST}"+msg)
 		  			$('#imgurl').val(msg)
 						$('#imgcutimgsrc').attr('src', '{$Think.config.FULL_HOST}'+msg)
-						$('#imgcutimgsrc').attr('style', '')
+						$('#imgcutimgsrc').removeAttr('style')
 		  			$('#imgcutmodal').modal('hide')
 	  				initJcrop(msg)
 		  			$('.bg-mask').hide()
@@ -285,14 +285,25 @@
 		function yescut(){
 			$('.bg-mask').show()
 			Oimgcut.destroy()
-			$('#imgcutimgsrc').attr('src', '')
+			$('#imgcutimgsrc').removeAttr('src')
 			$('#imgcutform').ajaxSubmit(function(msg){
-				$('#inputurl').val("{$Think.config.FULL_HOST}"+msg)
-				$('#imgcutimgsrc').attr('src', '{$Think.config.FULL_HOST}'+msg)
-				$('#imgcutimgsrc').attr('style', '')
-				$('.imgcutyes').html('<h4>裁剪完成，请将图片另存到本地<!--或点击右侧下载按钮 <a href="javascript:;" class="btn btn-primary">下载图片</a>--></h4>')
-				$('#yescut').off('click')
-				$('.bg-mask').hide()
+				if( msg == 404 ){
+					msg = "Public/images/error.png"
+					alert("出错了，请刷新重来！")
+					$('#inputurl').val("{$Think.config.FULL_HOST}"+msg)
+					$('#imgcutimgsrc').attr('src', '{$Think.config.FULL_HOST}'+msg)
+					$('#imgcutimgsrc').removeAttr('style')
+					$('.imgcutyes').html('<h4>从火星来的错误，正在赶回火星，请刷新重试</h4>')
+					$('#yescut').off('click')
+					$('.bg-mask').hide()
+				}else{
+					$('#inputurl').val("{$Think.config.FULL_HOST}"+msg)
+					$('#imgcutimgsrc').attr('src', '{$Think.config.FULL_HOST}'+msg)
+					$('#imgcutimgsrc').removeAttr('style')
+					$('.imgcutyes').html('<h4>裁剪完成，请将图片另存到本地<!--或点击右侧下载按钮 <a href="javascript:;" class="btn btn-primary">下载图片</a>--></h4>')
+					$('#yescut').off('click')
+					$('.bg-mask').hide()
+				}
 			})
 		}
 	})

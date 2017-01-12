@@ -14,10 +14,15 @@
 }
 
 .foot{
-	height: 30px;
-	line-height: 30px;
+	height: 31px;
+	line-height: 31px;
 	text-align: center;
 	color: #BDB7B7;
+}
+.foot span#cnzz_stat_icon{
+	position: relative;
+	top: -1px;
+	left: 7px;
 }
 
 .box-border{
@@ -190,4 +195,57 @@
     transform: scale(1.0);
     -webkit-transform: scale(1.0);
   }
+}
+
+.bg-mask .error-message{
+	font-size: 20px;
+	text-align: center;
+	color: #E0DEDE;
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	margin-top: 50px;
+	letter-spacing: 1px;
+}
+.bg-mask .error-message span{
+	position: relative;
+	animation: errormessage 2s ease-in-out infinite;
+}
+@keyframes errormessage {
+	0% {
+		top: 0;
+	}
+	10% {
+		top: -4px;
+	}
+	25% {
+		top: 0;
+	}
+	55% {
+		top: 0;
+	}
+	75% {
+		top: 0;
+	}
+	100% {
+		top: 0;
+	}
+}
+.bg-mask .error-message span:nth-child(1){
+	animation-delay: 0s;
+}
+.bg-mask .error-message span:nth-child(2){
+	animation-delay: 0.2s;
+}
+.bg-mask .error-message span:nth-child(3){
+	animation-delay: 0.4s;
+}
+.bg-mask .error-message span:nth-child(4){
+	animation-delay: 0.6s;
+}
+.bg-mask .error-message span:nth-child(5){
+	animation-delay: 0.8s;
+}
+.bg-mask .error-message span:nth-child(6){
+	animation-delay: 1s;
 }
