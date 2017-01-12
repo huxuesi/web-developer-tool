@@ -180,7 +180,6 @@
 	    		$('.bg-mask').show()
 	    		if( Oimgcut ){
 	  				Oimgcut.destroy()
-	  				console.log("销毁")
 	  			}
 		  		$('#imgupform').ajaxSubmit(function(msg){
 		  			$('#inputurl').val("{$Think.config.FULL_HOST}"+msg)
@@ -189,7 +188,6 @@
 						$('#imgcutimgsrc').attr('style', '')
 		  			$('#imgcutmodal').modal('hide')
 	  				initJcrop(msg)
-	  				console.log("创建")
 		  			$('.bg-mask').hide()
 		  		})
 		  		return false;
@@ -287,6 +285,7 @@
 		function yescut(){
 			$('.bg-mask').show()
 			Oimgcut.destroy()
+			$('#imgcutimgsrc').attr('src', '')
 			$('#imgcutform').ajaxSubmit(function(msg){
 				$('#inputurl').val("{$Think.config.FULL_HOST}"+msg)
 				$('#imgcutimgsrc').attr('src', '{$Think.config.FULL_HOST}'+msg)
