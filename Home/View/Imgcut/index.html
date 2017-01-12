@@ -288,7 +288,7 @@
 			$('#imgcutimgsrc').removeAttr('src')
 			$('#imgcutform').ajaxSubmit(function(msg){
 				if( msg == 404 ){
-					msg = "Public/images/error.png"
+					msg = "Public/images/error.jpg"
 					alert("出错了，请刷新重来！")
 					$('#inputurl').val("{$Think.config.FULL_HOST}"+msg)
 					$('#imgcutimgsrc').attr('src', '{$Think.config.FULL_HOST}'+msg)
