@@ -24,7 +24,7 @@ class ImgcutController extends PublicController {
 	public function imgcut(){
 		if( is_numeric( I('post.width') ) && is_numeric( I('post.height') ) && is_numeric( I('post.x1') ) && is_numeric( I('post.y1') ) && I('post.imgurl')!='' ){
 			$imgurl = I('post.imgurl');
-			$image = new \Think\Image();
+			$image = new \Think\Image(\Think\Image::IMAGE_IMAGICK);
 			$image->open( './'.$imgurl );
 			//创建目录
 			$path="./Public/uploads/imgout/".date("Ymd",time());
@@ -36,7 +36,7 @@ class ImgcutController extends PublicController {
 			$image->crop(I('post.width'), I('post.height'), I('post.x1'), I('post.y1'))->save('./'.$newurl);
 			$this->ajaxReturn( $newurl );
 		}else{
-			$this->ajaxReturn( "Public/error.png" );
+			$this->ajaxReturn( "Public/images/error.png" );
 		}
 	}
 }

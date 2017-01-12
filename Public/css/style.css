@@ -63,6 +63,9 @@
 .imgcutyes h4{
 	margin: -5px 0 10px 0;
 }
+.imgcutimgsrc{
+	background-color: #fff;
+}
 
 /*loading*/
 .bg-mask{

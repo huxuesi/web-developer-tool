@@ -9,7 +9,7 @@
 				<include file="Index/leftnav" />
 				<div class="col-md-10">
 					<div class="box-border">
-						<h3>图片裁剪</h3>
+						<h3>图片裁剪<small> （图片最大不能超过7M）</small></h3>
 						<form role="form">
 							<div class="form-group">
 						    <div class="input-group col-md-10">
@@ -90,15 +90,14 @@
 		        <p>
 		        	<form action="{:U('Imgcut/imgup')}" id="imgupform" role="form" method="post" enctype="multipart/form-data">
 		        		<div class="form-group">
-		        			<!--<input type="file" name="imgup" class="form-control">-->
-		        			<input type="file" name="file" id="filer_input" multiple="multiple">
+		        			<input type="file" name="file" id="filer_input">
 		        		</div>
       				</form>
 		        </p>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-		        <button type="submit" class="btn btn-primary" id="startup">开始上传</button>
+		        <button type="button" class="btn btn-primary" id="startup">开始上传</button>
 		      </div>
 		    </div>
 		  </div>
@@ -176,17 +175,31 @@
         }
 	    },
 	    onSelect: function(){
+	    	$('#startup').off('click')
 	    	$('#startup').click(function(){
 	    		$('.bg-mask').show()
+	    		if( Oimgcut ){
+	  				Oimgcut.destroy()
+	  				console.log("销毁")
+	  			}
 		  		$('#imgupform').ajaxSubmit(function(msg){
 		  			$('#inputurl').val("{$Think.config.FULL_HOST}"+msg)
 		  			$('#imgurl').val(msg)
-						//$('#imgcutimgsrc').attr('src', '{$Think.config.FULL_HOST}'+msg)
+						$('#imgcutimgsrc').attr('src', '{$Think.config.FULL_HOST}'+msg)
+						$('#imgcutimgsrc').attr('style', '')
 		  			$('#imgcutmodal').modal('hide')
-		  			initJcrop(msg)
+	  				initJcrop(msg)
+	  				console.log("创建")
 		  			$('.bg-mask').hide()
 		  		})
+		  		return false;
 		  	})
+	    },
+	    onEmpty: function(){
+	    	$('#startup').off('click')
+	    	$('#startup').click(function(){
+	    		alert("请选择一张图片上传再进行操作！");
+	    	})
 	    },
 	   	captions:{
 		    button: "选择文件",
@@ -228,6 +241,7 @@
 	 	}
 		function showCoords2(c){
 	    showCoords(c)
+	    $('#yescut').off('click')
 	    $('#yescut').click(function(){
       	yescut()
       })
