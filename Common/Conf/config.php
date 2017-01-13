@@ -2,7 +2,10 @@
 return array(
 	//'配置项'=>'配置值'
 	'FULL_HOST' => $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/',
-	
+
+	'IMGOUT' => "./Public/uploads/imgout/".date("Ymd",time()),
+	'IMGDOWN' => "./Public/uploads/download/".date("Ymd",time()),
+
 	//显示调试信息
 	'SHOW_PAGE_TRACE' => true,
 	

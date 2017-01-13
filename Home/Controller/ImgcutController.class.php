@@ -23,7 +23,7 @@ class ImgcutController extends PublicController {
 	
 	public function imgcut(){
 		//创建目录
-		$path="./Public/uploads/imgout/".date("Ymd",time());
+		$path = C("IMGOUT");
 		if(!is_dir($path)){
 			mkdir($path, 0755, true);
 		}
@@ -46,7 +46,7 @@ class ImgcutController extends PublicController {
 	
 	public function imgdown(){
 		//创建目录
-		$path="./Public/uploads/download/".date("Ymd",time());
+		$path = C("IMGDOWN");
 		if(!is_dir($path)){
 			mkdir($path, 0755, true);
 		}
