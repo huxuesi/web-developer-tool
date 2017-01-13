@@ -32,7 +32,7 @@ class ImgcutController extends PublicController {
 		$x1 = trim(I('post.x1'));
 		$y1 = trim(I('post.y1'));
 		$imgurl = trim(I('post.imgurl'));
-		$ext = empty(pathinfo($remoteurl, PATHINFO_EXTENSION))?"gif":pathinfo($remoteurl, PATHINFO_EXTENSION);
+		$ext = empty(pathinfo($imgurl, PATHINFO_EXTENSION))?"gif":pathinfo($imgurl, PATHINFO_EXTENSION);
 		$newurl = $path.'/'.date('Ymd',time()).time().mt_rand().'.'.$ext;
 		if( is_numeric( $width ) && is_numeric( $height ) && is_numeric( $x1 ) && is_numeric( $y1 ) && $imgurl!='' ){
 			$image = new \Think\Image(\Think\Image::IMAGE_IMAGICK);
