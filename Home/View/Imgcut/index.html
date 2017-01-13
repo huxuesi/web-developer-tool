@@ -10,16 +10,16 @@
 				<div class="col-md-10">
 					<div class="box-border">
 						<h3>图片裁剪<small> （图片最大不能超过7M）</small></h3>
-						<form role="form">
+						<form action="{:U('Imgcut/imgdown')}" role="form" id="imgdownform" method="post">
 							<div class="form-group">
 						    <div class="input-group col-md-10">
 						      <span class="input-group-btn">
 						        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#imgcutmodal">上传图片</button>
 						      </span>
-						      <input type="text" id="inputurl" class="form-control" placeholder="点击上传图片按钮即可开始处理图片">
-						      <!--<span class="input-group-btn">
+						      <input type="url" id="inputurl" name="remoteurl" class="form-control" placeholder="点击上传图片按钮 或 直接输入远程图片链接并点击加载图片按钮即可开始处理图片">
+						      <span class="input-group-btn">
 						        <button class="btn btn-primary" type="button" id="loadimg">加载图片</button>
-						      </span>-->
+						      </span>
 						    </div>
 							</div>
 						</form>
@@ -226,6 +226,8 @@
         Oimgcut.animateTo([0,0,50,80])
         $('#yuanwidth').val( Oimgcut.getBounds()[0] )
         $('#yuanheight').val( Oimgcut.getBounds()[1] )
+        $('#imgurl').val(imgurl)
+        $('#yescut').off('click')
         $('#yescut').click(function(){
         	yescut()
         })
@@ -290,21 +292,40 @@
 				if( msg == 404 ){
 					msg = "Public/images/error.jpg"
 					alert("出错了，请刷新重来！")
-					$('#inputurl').val("{$Think.config.FULL_HOST}"+msg)
-					$('#imgcutimgsrc').attr('src', '{$Think.config.FULL_HOST}'+msg)
-					$('#imgcutimgsrc').removeAttr('style')
-					$('.imgcutyes').html('<h4>从火星来的错误，正在赶回火星，请刷新重试</h4>')
-					$('#yescut').off('click')
-					$('.bg-mask').hide()
+					yescutFun(msg, "<h4>从火星来的错误，正在赶回火星，请刷新重试</h4>")
 				}else{
-					$('#inputurl').val("{$Think.config.FULL_HOST}"+msg)
-					$('#imgcutimgsrc').attr('src', '{$Think.config.FULL_HOST}'+msg)
-					$('#imgcutimgsrc').removeAttr('style')
-					$('.imgcutyes').html('<h4>裁剪完成，请将图片另存到本地<!--或点击右侧下载按钮 <a href="javascript:;" class="btn btn-primary">下载图片</a>--></h4>')
-					$('#yescut').off('click')
-					$('.bg-mask').hide()
+					yescutFun(msg, '<h4>裁剪完成，请将图片另存到本地<!--或点击右侧下载按钮 <a href="javascript:;" class="btn btn-primary">下载图片</a>--></h4>')
 				}
 			})
 		}
+		function yescutFun(msg, tip){
+			$('#inputurl').val("{$Think.config.FULL_HOST}"+msg)
+			$('#imgcutimgsrc').attr('src', '{$Think.config.FULL_HOST}'+msg)
+			$('#imgcutimgsrc').removeAttr('style')
+			$('.imgcutyes').html(tip)
+			$('#yescut').off('click')
+			$('.bg-mask').hide()
+		}
+		
+		$('#loadimg').click(function(){
+			$('.bg-mask').show()
+			if( $('#inputurl').val().replace(/(^\s*)|(\s*$)/g, "").length > 0 ){
+				$('#imgdownform').ajaxSubmit(function(msg){
+					if( msg == 404 ){
+						$('.bg-mask').hide()
+						alert("请输入正确的图片链接！")
+					}else{
+						if( Oimgcut ){
+		  				Oimgcut.destroy()
+		  			}
+						yescutFun(msg,"")
+	  				initJcrop(msg)
+					}
+				})
+			}else{
+				$('.bg-mask').hide()
+				alert("请输入完整的图片链接之后再点击加载，或者直接上传一张图片进行操作！")
+			}
+		})
 	})
 </script>
