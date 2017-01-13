@@ -32,13 +32,13 @@ class ImgcutController extends PublicController {
 		$x1 = trim(I('post.x1'));
 		$y1 = trim(I('post.y1'));
 		$imgurl = trim(I('post.imgurl'));
-		$ext = empty(pathinfo($remoteurl, PATHINFO_EXTENSION))?"png":pathinfo($remoteurl, PATHINFO_EXTENSION);
+		$ext = empty(pathinfo($remoteurl, PATHINFO_EXTENSION))?"gif":pathinfo($remoteurl, PATHINFO_EXTENSION);
 		$newurl = $path.'/'.date('Ymd',time()).time().mt_rand().'.'.$ext;
 		if( is_numeric( $width ) && is_numeric( $height ) && is_numeric( $x1 ) && is_numeric( $y1 ) && $imgurl!='' ){
 			$image = new \Think\Image(\Think\Image::IMAGE_IMAGICK);
 			$image->open( './'.$imgurl );
 			$image->crop($width, $height, $x1, $y1)->save('./'.$newurl);
-			$this->ajaxReturn( $newurl );
+			$this->ajaxReturn( ltrim($newurl, './') );
 		}else{
 			$this->ajaxReturn( 404 );
 		}
@@ -56,7 +56,7 @@ class ImgcutController extends PublicController {
 				if( substr($remoteurl, 0, strlen(C('FULL_HOST'))) == C('FULL_HOST') ){
 					$this->ajaxReturn( ltrim($remoteurl, C('FULL_HOST')) );
 				}else{
-					$ext = empty(pathinfo($remoteurl, PATHINFO_EXTENSION))?"png":pathinfo($remoteurl, PATHINFO_EXTENSION);
+					$ext = empty(pathinfo($remoteurl, PATHINFO_EXTENSION))?"gif":pathinfo($remoteurl, PATHINFO_EXTENSION);
 					$newurl = $path.'/'.date('Ymd',time()).time().mt_rand().'.'.$ext;
 					$imgdownload = new \Org\Net\Http();
 					$imgdownload->curlDownload($remoteurl, $newurl);
