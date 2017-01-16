@@ -1,7 +1,7 @@
+/*common*/
 .pb25{
 	padding-bottom: 25px;
 }
-
 .xs-nav-topwrap{
 	height: 65px;
 }
@@ -10,21 +10,8 @@
 	color: #fff;
 }
 .xs-left-group .xs-collapse-a a{
-	text-indent: 30px;
+  padding-left: 30px;
 }
-
-.foot{
-	height: 31px;
-	line-height: 31px;
-	text-align: center;
-	color: #BDB7B7;
-}
-.foot span#cnzz_stat_icon{
-	position: relative;
-	top: -1px;
-	left: 7px;
-}
-
 .box-border{
 	border: 1px solid #ddd;
 	margin-left: -15px;
@@ -37,6 +24,21 @@
 	clear: both;
 	display: table;
 }
+/*end*/
+
+/*foot*/
+.foot{
+	height: 31px;
+	line-height: 31px;
+	text-align: center;
+	color: #BDB7B7;
+}
+.foot span#cnzz_stat_icon{
+	position: relative;
+	top: -1px;
+	left: 7px;
+}
+/*end*/
 
 .xs-left-group{
 	margin-bottom: 0;
@@ -71,6 +73,15 @@
 .imgcutimgsrc{
 	background-color: #fff;
 }
+
+/*unixtime*/
+#curtime{
+	margin-right: 18px;
+}
+.curtimewrap{
+	padding-top: 20px;
+}
+/*end*/
 
 /*loading*/
 .bg-mask{
