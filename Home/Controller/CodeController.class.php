@@ -24,6 +24,10 @@ class CodeController extends PublicController {
 		$this->assign("currnav","utf8");
 		$this->display();
 	}
+	public function chinese() {
+		$this->assign("currnav","chinese");
+		$this->display();
+	}
 	public function UrlEncode() {
 		$this->assign("currnav","urlencode");
 		$this->display();
