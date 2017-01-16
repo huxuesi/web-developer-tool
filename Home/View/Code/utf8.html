@@ -6,6 +6,31 @@
 				<div class="col-md-10">
 					<div class="box-border">
 						<h3>UTF-8转换</h3>
+						<div class="row">
+							<form method="post" role="form">
+								<div class="col-md-6">
+									<div class="form-group">
+										<p>需要转换的中文内容：</p>
+										<textarea name="chinesetxt" id="chinesetxt" class="form-control" rows="8"></textarea>
+									</div>
+									<div class="form-group text-right">
+										<button type="button" class="btn btn-primary change-btn">中文转换成UTF-8 <i class="glyphicon glyphicon-arrow-right"></i></button>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<p>需要转换的UTF-8内容：</p>
+										<textarea name="utf8txt" id="utf8txt" class="form-control" rows="8"></textarea>
+									</div>
+									<div class="form-group">
+										<button type="button" class="btn btn-primary change-btn"><i class="glyphicon glyphicon-arrow-left"></i> UTF-8转换成中文</button>
+									</div>
+								</div>
+								<div class="col-md-12 text-center">
+									<button type="button" class="btn btn-primary clearallcontent">清空所有</button>
+								</div>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -16,5 +41,17 @@
 	$(function(){
 		var currnav = "{$currnav}";
 		$(".list-group-item[data-hover='" + currnav + "']").addClass("active")
+		var chinesetxt = document.getElementById("chinesetxt")
+		var utf8txt = document.getElementById("utf8txt")
+		document.getElementsByClassName('change-btn')[0].onclick = function(){
+			utf8txt.value = chinesetxt.value.replace(/[^\u0000-\u00FF]/g,function($0){return escape($0).replace(/(%u)(\w{4})/gi,"&#x$2;")})
+		}
+		document.getElementsByClassName('change-btn')[1].onclick = function(){
+			chinesetxt.value = unescape(utf8txt.value.replace(/&#x/g,'%u').replace(/;/g,''))
+		}
+		document.getElementsByClassName('clearallcontent')[0].onclick = function(){
+			utf8txt.value = ''
+			chinesetxt.value = ''
+		}
 	})
 </script>

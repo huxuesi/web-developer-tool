@@ -7,7 +7,7 @@ return array(
 	'IMGDOWN' => "./Public/uploads/download/".date("Ymd",time()),
 
 	//显示调试信息
-	'SHOW_PAGE_TRACE' => true,
+	'SHOW_PAGE_TRACE' => false,
 	
 	//后台账号密码
 	//'ADMIN_USER' => 'admin',
