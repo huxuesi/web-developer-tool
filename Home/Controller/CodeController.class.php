@@ -8,8 +8,16 @@ class CodeController extends PublicController {
 		$this->display();
 	}
 	public function unixtimeajax() {
-		
-		$this->ajaxReturn( time() );
+		if( I('post.type') == '1' ){
+			$date = I('post.date')." ".I('post.time');
+			$res = strtotime($date);
+			$this->ajaxReturn( $res );
+		}else if( I('post.type') == '2' ){
+			$time = date('Y-m-d H:i', I('post.timestamp'));
+			$this->ajaxReturn( $time );
+		}else{
+			$this->ajaxReturn( 404 );
+		}
 	}
 	
 	public function utf8() {

@@ -2,6 +2,9 @@
 .pb25{
 	padding-bottom: 25px;
 }
+.w100{
+	width: 100% !important;
+}
 .xs-nav-topwrap{
 	height: 65px;
 }
@@ -16,6 +19,7 @@
 	border: 1px solid #ddd;
 	margin-left: -15px;
 	padding-left: 15px;
+	padding-right: 15px;
 	padding-bottom: 25px;
 	border-radius: 4px;
 }
@@ -23,6 +27,9 @@
 	content: ' ';
 	clear: both;
 	display: table;
+}
+.curpoin{
+	cursor: pointer;
 }
 /*end*/
 
@@ -40,6 +47,7 @@
 }
 /*end*/
 
+/*leftnav*/
 .xs-left-group{
 	margin-bottom: 0;
 }
@@ -49,13 +57,14 @@
 .xs-left-group .xs-collapse-a a.list-group-item:first-child{
 	border-radius: 0;
 }
-
 .xs-collapse-a .list-group-item.active{
 	background-color: #583979;
 	border-color: #ddd;
 	border-top-color: #583979;
 }
+/*end*/
 
+/*imgcut*/
 .imgcutset,.imgcutwrap{
 	padding-left: 0;
 	padding-right: 0;
@@ -73,6 +82,7 @@
 .imgcutimgsrc{
 	background-color: #fff;
 }
+/*end*/
 
 /*unixtime*/
 #curtime{
@@ -80,6 +90,15 @@
 }
 .curtimewrap{
 	padding-top: 20px;
+}
+.timeform,.timestampform{
+	padding: 0;
+}
+.time-ipt{
+	float: none;
+}
+.timestampform{
+	margin-top: 40px;
 }
 /*end*/
 
