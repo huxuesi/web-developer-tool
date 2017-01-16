@@ -1,0 +1,39 @@
+<include file="Index/head" title="Unix时间戳转换" />
+
+		<div class="container-fluid">
+			<div class="row pb25">
+				<include file="Index/leftnav" />
+				<div class="col-md-10">
+					<div class="box-border">
+						<h3>Unix时间戳转换 <small>Unix时间戳被使用在Unix系统、类Unix系统、其他操作系统中被广泛采用</small></h3>
+						<h4 class="text-center curtimewrap">当前时间戳：<span id="curtime">{$curtime}</span><input id="hidtime" autoadd="1" type="hidden" value="{$curtime}"><button type="button" id="stoptime" mode="1" class="btn btn-primary btn-sm">停止</button> <button type="button" onclick="javascript:window.location.reload();" class="btn btn-primary btn-sm">刷新</button></h4>
+					</div>
+				</div>
+			</div>
+		</div>
+
+<include file="Index/foot" />
+<script>
+	$(function(){
+		var currnav = "{$currnav}";
+		$(".list-group-item[data-hover='" + currnav + "']").addClass("active")
+		var settime = setInterval(function(){
+			var time = parseInt( $('#hidtime').val() )
+			$('#hidtime').val( time+1 )
+			if( $('#hidtime').attr("autoadd") == "1" ){
+				$('#curtime').text( time+1 )
+			}
+		}, 1000)
+		$('#stoptime').click(function(){
+			if( $(this).attr("mode") == "1" ){
+				$(this).attr("mode","0")
+				$(this).text("开始")
+				$('#hidtime').attr("autoadd","0")
+			}else{
+				$(this).attr("mode","1")
+				$(this).text("停止")
+				$('#hidtime').attr("autoadd","1")
+			}
+		})
+	})
+</script>
