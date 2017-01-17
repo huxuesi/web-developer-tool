@@ -39,8 +39,7 @@
 <include file="Index/foot" />
 <script>
 	$(function(){
-		var currnav = "{$currnav}";
-		$(".list-group-item[data-hover='" + currnav + "']").addClass("active")
+		document.querySelector(".list-group-item[data-hover='{$currnav}']").className += " active"
 		var chinesejt = document.getElementById("chinesejt")
 		var chineseft = document.getElementById("chineseft")
 		document.getElementsByClassName('change-btn')[0].onclick = function(){

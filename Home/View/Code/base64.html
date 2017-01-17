@@ -1,20 +1,123 @@
 <include file="Index/head" title="Base64加解密" />
 
-		<div class="container-fluid">
-			<div class="row pb25">
-				<include file="Index/leftnav" />
-				<div class="col-md-10">
-					<div class="box-border">
-						<h3>Base64加解密</h3>
-					</div>
+<div class="container-fluid">
+	<div class="row pb25">
+		<include file="Index/leftnav" />
+		<div class="col-md-10">
+			<div class="box-border">
+				<h3>Base64加解密</h3>
+				<div class="row">
+					<form method="post" role="form">
+						<div class="col-md-6">
+							<div class="form-group">
+								<p>需要加密的内容：</p>
+								<textarea name="base64en" id="base64en" class="form-control" rows="8"></textarea>
+							</div>
+							<div class="form-group text-right">
+								<button type="button" class="btn btn-primary change-btn">Base64加密 <i class="glyphicon glyphicon-arrow-right"></i></button>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<p>需要解密的内容：</p>
+								<textarea name="base64de" id="base64de" class="form-control" rows="8"></textarea>
+							</div>
+							<div class="form-group">
+								<button type="button" class="btn btn-primary change-btn"><i class="glyphicon glyphicon-arrow-left"></i> Base64解密</button>
+							</div>
+						</div>
+						<div class="col-md-12 text-center">
+							<button type="button" class="btn btn-primary clearallcontent">清空所有</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
+	</div>
+</div>
 
 <include file="Index/foot" />
 <script>
-	$(function(){
-		var currnav = "{$currnav}";
-		$(".list-group-item[data-hover='" + currnav + "']").addClass("active")
+	$(function() {
+		document.querySelector(".list-group-item[data-hover='{$currnav}']").className += " active"
+		var base64en = document.getElementById("base64en")
+		var base64de = document.getElementById("base64de")
+		document.getElementsByClassName('change-btn')[0].onclick = function() {
+			base64de.value = encode64(base64en.value)
+		}
+		document.getElementsByClassName('change-btn')[1].onclick = function() {
+			base64en.value = decode64(base64de.value)
+		}
+		document.getElementsByClassName('clearallcontent')[0].onclick = function() {
+			base64de.value = ''
+			base64en.value = ''
+		}
+
+		var keyStr = "ABCDEFGHIJKLMNOP" +
+			"QRSTUVWXYZabcdef" +
+			"ghijklmnopqrstuv" +
+			"wxyz0123456789+/" +
+			"=";
+		function encode64(input) {
+			input = escape(input);
+			var output = "";
+			var chr1, chr2, chr3 = "";
+			var enc1, enc2, enc3, enc4 = "";
+			var i = 0;
+			do {
+				chr1 = input.charCodeAt(i++);
+				chr2 = input.charCodeAt(i++);
+				chr3 = input.charCodeAt(i++);
+				enc1 = chr1 >> 2;
+				enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+				enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+				enc4 = chr3 & 63;
+				if(isNaN(chr2)) {
+					enc3 = enc4 = 64;
+				} else if(isNaN(chr3)) {
+					enc4 = 64;
+				}
+				output = output +
+					keyStr.charAt(enc1) +
+					keyStr.charAt(enc2) +
+					keyStr.charAt(enc3) +
+					keyStr.charAt(enc4);
+				chr1 = chr2 = chr3 = "";
+				enc1 = enc2 = enc3 = enc4 = "";
+			} while (i < input.length);
+			return output;
+		}
+
+		function decode64(input) {
+			var output = "";
+			var chr1, chr2, chr3 = "";
+			var enc1, enc2, enc3, enc4 = "";
+			var i = 0;
+			// 删除不是 A-Z, a-z, 0-9, +, /, or = 的所有字符
+			var base64test = /[^A-Za-z0-9\+\/\=]/g;
+			if(base64test.exec(input)) {
+				alert("无效的base64字符.\nbase64字符应该包含 A-Z, a-z, 0-9, '+', '/', 和 '='");
+			}
+			input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+			do {
+				enc1 = keyStr.indexOf(input.charAt(i++));
+				enc2 = keyStr.indexOf(input.charAt(i++));
+				enc3 = keyStr.indexOf(input.charAt(i++));
+				enc4 = keyStr.indexOf(input.charAt(i++));
+				chr1 = (enc1 << 2) | (enc2 >> 4);
+				chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+				chr3 = ((enc3 & 3) << 6) | enc4;
+				output = output + String.fromCharCode(chr1);
+				if(enc3 != 64) {
+					output = output + String.fromCharCode(chr2);
+				}
+				if(enc4 != 64) {
+					output = output + String.fromCharCode(chr3);
+				}
+				chr1 = chr2 = chr3 = "";
+				enc1 = enc2 = enc3 = enc4 = "";
+			} while (i < input.length);
+			return unescape(output);
+		}
 	})
 </script>

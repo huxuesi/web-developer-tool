@@ -6,6 +6,35 @@
 				<div class="col-md-10">
 					<div class="box-border">
 						<h3>UrlEncode编码与解码</h3>
+						<div class="row">
+							<form action="" method="post" role="form">
+								<div class="col-md-6">
+									<div class="form-group">
+										<p>需要编码的URL：</p>
+										<textarea name="urlencode" id="urlencode" class="form-control" rows="8">{$oldstr}</textarea>
+									</div>
+									<div class="form-group text-right">
+										<button type="submit" class="btn btn-primary change-btn">UrlEncode编码 <i class="glyphicon glyphicon-arrow-right"></i></button>
+										<input type="hidden" name="type" value="1">
+									</div>
+								</div>
+							</form>
+							<form action="" method="post" role="form">
+								<div class="col-md-6">
+									<div class="form-group">
+										<p>需要解码的URL：</p>
+										<textarea name="urldecode" id="urldecode" class="form-control" rows="8">{$newstr}</textarea>
+									</div>
+									<div class="form-group">
+										<button type="submit" class="btn btn-primary change-btn"><i class="glyphicon glyphicon-arrow-left"></i> UrlDecode解码</button>
+										<input type="hidden" name="type" value="2">
+									</div>
+								</div>
+							</form>
+							<div class="col-md-12 text-center">
+								<button type="button" class="btn btn-primary clearallcontent">清空所有</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -14,7 +43,10 @@
 <include file="Index/foot" />
 <script>
 	$(function(){
-		var currnav = "{$currnav}";
-		$(".list-group-item[data-hover='" + currnav + "']").addClass("active")
+		document.querySelector(".list-group-item[data-hover='{$currnav}']").className += " active"
+		document.getElementsByClassName('clearallcontent')[0].onclick = function(){
+			document.getElementById("urlencode").value = ''
+			document.getElementById("urldecode").value = ''
+		}
 	})
 </script>

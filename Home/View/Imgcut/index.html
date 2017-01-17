@@ -9,7 +9,7 @@
 				<include file="Index/leftnav" />
 				<div class="col-md-10">
 					<div class="box-border">
-						<h3>图片裁剪<small> （图片最大不能超过7M）</small></h3>
+						<h3>图片裁剪 <small>（图片最大不能超过7M）</small></h3>
 						<form action="{:U('Imgcut/imgdown')}" role="form" id="imgdownform" method="post">
 							<div class="form-group">
 						    <div class="input-group col-md-10">
@@ -108,9 +108,8 @@
 <script src="_JSPATH_/jquery.Jcrop.min.js"></script>
 <script>
 	$(function(){
-		var currnav = "{$currnav}";
-		$(".list-group-item[data-hover='" + currnav + "']").addClass("active")
-		
+		document.querySelector(".list-group-item[data-hover='{$currnav}']").className += " active"
+
 		//图片上传
 		$('#filer_input').filer({
 			limit: 1,

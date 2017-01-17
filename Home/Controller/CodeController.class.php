@@ -29,6 +29,13 @@ class CodeController extends PublicController {
 		$this->display();
 	}
 	public function UrlEncode() {
+		if( I('post.type') == '1' ){
+			$this->assign("oldstr", I('post.urlencode'));
+			$this->assign("newstr", urlencode(I('post.urlencode')));
+		}else if( I('post.type') == '2' ){
+			$this->assign("newstr", I('post.urldecode'));
+			$this->assign("oldstr", urldecode(I('post.urldecode')));
+		}
 		$this->assign("currnav","urlencode");
 		$this->display();
 	}
@@ -37,6 +44,10 @@ class CodeController extends PublicController {
 		$this->display();
 	}
 	public function MD5() {
+		/*if( isset($_POST["oldstr"]) ){
+			$this->assign("oldstr", $_POST["oldstr"]);
+			$this->assign("md5str", md5($_POST["oldstr"]));
+		}*/
 		$this->assign("currnav","md5");
 		$this->display();
 	}

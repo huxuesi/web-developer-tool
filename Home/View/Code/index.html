@@ -60,8 +60,7 @@
 <script src="_JSPATH_/timedropper.min.js"></script>
 <script>
 	$(function(){
-		var currnav = "{$currnav}";
-		$(".list-group-item[data-hover='" + currnav + "']").addClass("active")
+		document.querySelector(".list-group-item[data-hover='{$currnav}']").className += " active"
 		var settime = setInterval(function(){
 			var time = parseInt( $('#hidtime').val() )
 			$('#hidtime').val( time+1 )
@@ -109,7 +108,7 @@
 			})
 		})
 		$('#reyessubmit').click(function(){
-			if( $('#timestamp').val() == '' ){
+			if( $('#timestamp').val().replace(/(^\s*)|(\s*$)/g, "").length <= 0 ){
 				alert('请输入一个时间戳！')
 			}else{
 				$("#timestamp-form").ajaxSubmit(function(msg){
