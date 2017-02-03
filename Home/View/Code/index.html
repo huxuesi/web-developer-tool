@@ -97,6 +97,9 @@
 				if( m < 10 ){
 					m = '0' + m
 				}
+				if( d < 10 ){
+					d = '0' + d
+				}
 				$('#pickdate').val(Y+'-'+m+'-'+d).attr("readonly","readonly")
 			}
 			$("#time-form").ajaxSubmit(function(msg){
