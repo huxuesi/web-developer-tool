@@ -2,6 +2,7 @@
 return array(
 	//'配置项'=>'配置值'
 	'FULL_HOST' => $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/',
+	'TITLE' => '前端常用工具合集',
 
 	'IMGOUT' => "./Public/uploads/imgout/".date("Ymd",time()),
 	'IMGDOWN' => "./Public/uploads/download/".date("Ymd",time()),
