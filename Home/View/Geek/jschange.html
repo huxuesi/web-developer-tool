@@ -47,8 +47,8 @@
 
 		function keyup(){
 	    var t = document.getElementById( "oldstr" ).value;
-      document.getElementById("newstr").value = aaencode( t );
-      _prev = t;
+	    var d = aaencode( t );
+      document.getElementById("newstr").value = d;
       document.getElementById("eval").setAttribute( "href", "javascript:" + d );
 		}
 		
