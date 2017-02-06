@@ -13,7 +13,7 @@ class CodeController extends PublicController {
 			$res = strtotime($date);
 			$this->ajaxReturn( $res );
 		}else if( I('post.type') == '2' ){
-			$time = date('Y-m-d H:i', I('post.timestamp'));
+			$time = date('Y-m-d H:i:s', I('post.timestamp'));
 			$this->ajaxReturn( $time );
 		}else{
 			$this->ajaxReturn( 404 );
