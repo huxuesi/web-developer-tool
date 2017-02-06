@@ -5,7 +5,7 @@ class CodeController extends PublicController {
 	public function index() {
 		$this->assign("currnav","unixtime");
 		$this->assign("curtime",time());
-		$this->display();
+		$this->display("unix");
 	}
 	public function unixtimeajax() {
 		if( I('post.type') == '1' ){

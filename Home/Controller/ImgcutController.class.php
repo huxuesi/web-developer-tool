@@ -4,7 +4,7 @@ use Think\Controller;
 class ImgcutController extends PublicController {
 	public function index() {
 		$this->assign("currnav","Imgcut");
-		$this->display();
+		$this->display("imgcut");
 	}
 	
 	public function imgup() {

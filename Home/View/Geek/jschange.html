@@ -1,0 +1,40 @@
+<include file="Index/head" title="任何JS代码转文字表情(^_^) - {$Think.config.TITLE}" />
+
+<div class="container-fluid">
+	<div class="row pb25">
+		<include file="Index/leftnav" />
+		<div class="col-md-10">
+			<div class="box-border">
+				<h3>任何JS代码转文字表情(^_^) <small>暂无说明</small></h3>
+				<div class="row">
+					<form method="post" role="form">
+						<div class="col-md-6">
+							<div class="form-group">
+								<p>需要转化为文字表情的Javascript代码：</p>
+								<textarea name="oldstr" id="oldstr" class="form-control" rows="8"></textarea>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<p>转化结果：</p>
+								<textarea id="newstr" class="form-control" rows="8"></textarea>
+							</div>
+						</div>
+						<div class="col-md-12 text-center">
+							<div class="form-group">
+								<button type="button" class="btn btn-primary iptyes">开始转化</button>
+							</div>
+						</div>
+						<div class="col-md-12 text-center">
+							<div class="form-group">
+								<button type="button" class="btn btn-primary clearallcontent">清空所有</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<include file="Index/foot" />
