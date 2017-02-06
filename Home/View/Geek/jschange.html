@@ -11,7 +11,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<p>需要转化为文字表情的Javascript代码：</p>
-								<textarea name="oldstr" id="oldstr" class="form-control" onkeyup="javascript:keyup( false )" rows="8">alert("Hello, JavaScript")</textarea>
+								<textarea name="oldstr" id="oldstr" class="form-control" rows="8">alert("Hello, JavaScript")</textarea>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -41,6 +41,9 @@
 <script>
 	$(function(){
 		document.querySelector(".list-group-item[data-hover='{$currnav}']").className += " active"
+		document.getElementById("oldstr").onkeyup = function(){
+			keyup( false )
+		}
 		document.getElementsByClassName("iptyes")[0].onclick = function(){
 			keyup( true )
 		}
