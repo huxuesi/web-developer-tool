@@ -35,10 +35,13 @@
 
 /*foot*/
 .foot{
-	height: 31px;
 	line-height: 31px;
 	text-align: center;
 	color: #BDB7B7;
+	padding: 10px 0;
+}
+.foot p{
+	margin-bottom: 0;
 }
 .foot span#cnzz_stat_icon{
 	position: relative;
