@@ -44,6 +44,10 @@
 		document.getElementById("oldstr").onkeyup = function(){
 			keyup()
 		}
+		document.getElementsByClassName('clearallcontent')[0].onclick = function(){
+			document.getElementById("oldstr").value = ''
+			document.getElementById("newstr").value = ''
+		}
 
 		function keyup(){
 	    var t = document.getElementById( "oldstr" ).value;
