@@ -126,7 +126,9 @@
         },
         statusCode: null,
         onProgress: null,
-        onComplete: null
+        onComplete: function(){
+        	console.log('全部上传完成')
+        }
 	    },
 	    onRemove: function(itemEl, file){
 	    	console.log('移除' + file.name)
