@@ -4,7 +4,7 @@
 		<link rel="stylesheet" href="_CSSPATH_/jquery.filer-dragdropbox-theme.css" />
 		<style>
 			.jFiler-theme-dragdropbox{ margin-top: 27px;}
-			#start{ margin-top: 11px;}
+			.startbox{ margin: 0 0 11px 0; text-align: center;}
 		</style>
 		
 		<div class="container-fluid">
@@ -40,7 +40,7 @@
 			limit: 25,
 			extensions: ['jpg', 'jpeg', 'png', 'gif'],
 			maxSize: {$Think.config.MAX_UPLOAD_SIZE},
-			changeInput: '<div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-cloud-up-o"></i></div><div class="jFiler-input-text"><h3>将文件拖放到此处</h3> <span style="display:inline-block; margin: 15px 0">或</span></div><a class="jFiler-input-choose-btn blue">选择文件</a></div></div><br><button class="btn btn-primary" type="button" id="start">开始压缩</button>',
+			changeInput: '<div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-cloud-up-o"></i></div><div class="jFiler-input-text"><h3>将文件拖放到此处</h3> <span style="display:inline-block; margin: 15px 0">或</span></div><a class="jFiler-input-choose-btn blue">选择文件</a></div></div><div class="startbox"><button class="btn btn-primary" type="button" id="start">开始压缩</button></div>',
 			showThumbs: true,
 			theme: "dragdropbox",
 			templates: {
