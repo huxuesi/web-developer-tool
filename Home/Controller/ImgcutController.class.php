@@ -28,6 +28,10 @@ class ImgcutController extends PublicController {
 		$this->ajaxReturn( $photo_url );
 	}
 	
+	public function imgups() {
+		$this->ajaxReturn( $_FILES );
+	}
+	
 	public function imgcut(){
 		//创建目录
 		$path = C("IMGOUT");

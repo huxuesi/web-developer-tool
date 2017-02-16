@@ -15,13 +15,13 @@
 						<h3>图片压缩 <small>（图片最大不能超过 {$Think.config.MAX_UPLOAD_SIZE} M，图片越大，处理时间越长）</small></h3>
 						<div class="startbox"><button class="btn btn-primary" type="button" id="start">开始压缩</button></div>
 						<div class="box-upbefore">
-							<form action="{:U('Imgcut/imgcompress')}" id="imgupform" role="form" method="post" enctype="multipart/form-data">
+							<form action="{:U('Imgcut/imgups')}" id="imgupform" role="form" method="post" enctype="multipart/form-data">
 								<div class="form-group">
 									<input type="file" name="files[]" id="filer_input" multiple="multiple">
 								</div>
 							</form>
 						</div>
-						<div class="box-upafter">
+						<div class="box-upafter" style="display: none;">
 							上传之后页面
 						</div>
 					</div>
@@ -106,10 +106,20 @@
 				drop: null,
 			},
 			onSelect: function() {
-
+				$('#start').off('click')
+				$('#start').click(function(){
+					$('.bg-mask').show()
+		  		$('#imgupform').ajaxSubmit(function(msg){
+		  			console.log(msg)
+		  			$('.bg-mask').hide()
+		  		})
+				})
 			},
 			onEmpty: function() {
-
+				$('#start').off('click')
+				$('#start').click(function(){
+					alert("请选择一张图片再进行操作！");
+				})
 			},
 			captions: {
 				button: "选择文件",
