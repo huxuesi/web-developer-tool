@@ -4,8 +4,10 @@ return array(
 	'FULL_HOST' => $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/',
 	'TITLE' => '前端常用工具合集',
 
-	//允许上传最大值  M
+	//允许上传图片最大值  M
 	'MAX_UPLOAD_SIZE' => 20,
+	//允许处理图片最大值  M
+	'MAX_CUT_SIZE' => 7,
 
 	'IMGOUT' => "./Public/uploads/imgout/".date("Ymd",time()),
 	'IMGDOWN' => "./Public/uploads/download/".date("Ymd",time()),
@@ -29,7 +31,7 @@ return array(
 
 	//设置前台图片上传格式
 	'HOME_UPIMG' => array(
-		'maxSize' => C('MAX_UPLOAD_SIZE')*1024*1024,														//设置文件上传大小
+		'maxSize' => C('MAX_CUT_SIZE')*1024*1024,														//设置文件上传大小
 		'exts' => array('jpg', 'gif', 'png', 'jpeg'),			//设置文件上传类型
 		'rootPath' => "./",																//设置文件上传根目录
 		'savePath' => 'Public/uploads/home/',							//设置附件上传（子）目录

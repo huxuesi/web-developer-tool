@@ -9,7 +9,7 @@
 				<include file="Index/leftnav" />
 				<div class="col-md-10">
 					<div class="box-border">
-						<h3>图片裁剪 <small>（图片最大不能超过 {$Think.config.MAX_UPLOAD_SIZE} M，图片越大，处理时间越长）</small></h3>
+						<h3>图片裁剪 <small>（图片最大不能超过 {$Think.config.MAX_CUT_SIZE} M，图片越大，处理时间越长）</small></h3>
 						<form action="{:U('Imgcut/imgdown')}" role="form" id="imgdownform" method="post">
 							<div class="form-group">
 						    <div class="input-group col-md-10">
@@ -115,7 +115,7 @@
 			limit: 1,
 	    showThumbs: true,
 	    extensions: ['jpg', 'jpeg', 'png', 'gif'],
-	    maxSize: {$Think.config.MAX_UPLOAD_SIZE},
+	    maxSize: {$Think.config.MAX_CUT_SIZE},
 	    templates: {
         box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
         item: '<li class="jFiler-item">\
