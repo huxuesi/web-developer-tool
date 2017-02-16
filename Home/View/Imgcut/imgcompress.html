@@ -14,6 +14,7 @@
 				<div class="col-md-10">
 					<div class="box-border">
 						<h3>图片压缩 <small>（图片最大不能超过 {$Think.config.MAX_UPLOAD_SIZE} M，图片越大，处理时间越长）</small></h3>
+						<div class="startbox"><button class="btn btn-primary" type="button" id="start">开始压缩</button></div>
 						<div class="box-upbefore">
 							<form action="{:U('Imgcut/imgcompress')}" id="imgupform" role="form" method="post" enctype="multipart/form-data">
 								<div class="form-group">
@@ -41,7 +42,7 @@
 			limit: 25,
 			extensions: ['jpg', 'jpeg', 'png', 'gif'],
 			maxSize: {$Think.config.MAX_UPLOAD_SIZE},
-			changeInput: '<div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-cloud-up-o"></i></div><div class="jFiler-input-text"><h3>将文件拖放到此处</h3> <span style="display:inline-block; margin: 15px 0">或</span></div><a class="jFiler-input-choose-btn blue">选择文件</a></div></div><div class="startbox"><button class="btn btn-primary" type="button" id="start">开始压缩</button></div>',
+			changeInput: '<div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-cloud-up-o"></i></div><div class="jFiler-input-text"><h3>将文件拖放到此处</h3> <span style="display:inline-block; margin: 15px 0">或</span></div><a class="jFiler-input-choose-btn blue">选择文件</a></div></div>',
 			showThumbs: true,
 			theme: "dragdropbox",
 			templates: {
