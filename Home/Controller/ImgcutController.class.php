@@ -9,7 +9,6 @@ class ImgcutController extends PublicController {
 	
 	public function imgcompress() {
 		$this->assign("currnav","Imgcompress");
-		dump($_FILES);
 		$this->display("imgcompress");
 	}
 	
@@ -26,10 +25,6 @@ class ImgcutController extends PublicController {
 	    }
 		}
 		$this->ajaxReturn( $photo_url );
-	}
-	
-	public function imgups() {
-		$this->ajaxReturn( $_FILES );
 	}
 	
 	public function imgcut(){
