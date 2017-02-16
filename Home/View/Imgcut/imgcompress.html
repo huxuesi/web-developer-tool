@@ -1,23 +1,27 @@
 <include file="Index/head" title="图片压缩" />
 
-<link rel="stylesheet" href="_CSSPATH_/jquery.filer.css" />
-<link rel="stylesheet" href="_CSSPATH_/jquery.filer-dragdropbox-theme.css" />
-
-<div class="container-fluid">
-	<div class="row pb25">
-		<include file="Index/leftnav" />
-		<div class="col-md-10">
-			<div class="box-border">
-				<h3>图片压缩 <small>（图片最大不能超过 {$Think.config.MAX_UPLOAD_SIZE} M，图片越大，处理时间越长）</small></h3>
-				<form action="{:U('Imgcut/imgup')}" id="imgupform" role="form" method="post" enctype="multipart/form-data">
-					<div class="form-group">
-						<input type="file" name="files[]" id="filer_input" multiple="multiple">
+		<link rel="stylesheet" href="_CSSPATH_/jquery.filer.css" />
+		<link rel="stylesheet" href="_CSSPATH_/jquery.filer-dragdropbox-theme.css" />
+		<style>
+			.jFiler-theme-dragdropbox{ margin-top: 27px;}
+			#start{ margin-top: 11px;}
+		</style>
+		
+		<div class="container-fluid">
+			<div class="row pb25">
+				<include file="Index/leftnav" />
+				<div class="col-md-10">
+					<div class="box-border">
+						<h3>图片压缩 <small>（图片最大不能超过 {$Think.config.MAX_UPLOAD_SIZE} M，图片越大，处理时间越长）</small></h3>
+						<form action="{:U('Imgcut/imgup')}" id="imgupform" role="form" method="post" enctype="multipart/form-data">
+							<div class="form-group">
+								<input type="file" name="files[]" id="filer_input" multiple="multiple">
+							</div>
+						</form>
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
 
 <include file="Index/foot" />
 
