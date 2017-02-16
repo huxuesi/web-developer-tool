@@ -14,6 +14,7 @@ class ImgcutController extends PublicController {
     	$info = $upload->uploadOne($_FILES['file']);
 	    if(!$info) {
         //$this->error($upload->getError());
+        $photo_url = 404;
 	    }else{	// 上传成功
 				$photo_url = $info['savepath'].$info['savename'];
 	    }
