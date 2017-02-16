@@ -1,0 +1,329 @@
+<include file="Index/head" title="图片压缩 - {$Think.config.TITLE}" />
+
+		<link rel="stylesheet" href="_CSSPATH_/jquery.filer.css" />
+		<link rel="stylesheet" href="_CSSPATH_/jquery.filer-dragdropbox-theme.css" />
+		<link rel="stylesheet" href="_CSSPATH_/jquery.Jcrop.min.css" />
+
+		<div class="container-fluid">
+			<div class="row pb25">
+				<include file="Index/leftnav" />
+				<div class="col-md-10">
+					<div class="box-border">
+						<h3>图片裁剪 <small>（图片最大不能超过 {$Think.config.MAX_CUT_SIZE} M，图片越大，处理时间越长）</small></h3>
+						<form action="{:U('Imgcut/imgdown')}" role="form" id="imgdownform" method="post">
+							<div class="form-group">
+						    <div class="input-group col-md-10">
+						      <span class="input-group-btn">
+						        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#imgcutmodal">上传图片</button>
+						      </span>
+						      <input type="url" id="inputurl" name="remoteurl" class="form-control" placeholder="点击上传图片按钮 或 直接输入远程图片链接并点击加载图片按钮即可开始处理图片">
+						      <span class="input-group-btn">
+						        <button class="btn btn-primary" type="button" id="loadimg">加载图片</button>
+						      </span>
+						    </div>
+							</div>
+						</form>
+						<div class="col-xs-1 imgcutset">
+							<h4>裁剪设置</h4>
+							<form action="{:U('Imgcut/imgcut')}" role="form" id="imgcutform" method="post">
+								<div class="form-group">
+									<div class="input-group input-group-sm">
+		      					<div class="input-group-addon">X</div>
+										<input type="tel" class="form-control" id="x1" name="x1">
+										<input type="hidden" name="imgurl" id="imgurl">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group input-group-sm">
+		      					<div class="input-group-addon">Y</div>
+										<input type="tel" class="form-control" id="y1" name="y1">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group input-group-sm">
+		      					<div class="input-group-addon">宽</div>
+										<input type="tel" class="form-control" id="width" name="width">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group input-group-sm">
+		      					<div class="input-group-addon">高</div>
+										<input type="tel" class="form-control" id="height" name="height">
+									</div>
+								</div>
+								<h4>原图尺寸</h4>
+								<div class="form-group">
+									<div class="input-group input-group-sm">
+		      					<div class="input-group-addon">宽</div>
+										<input type="text" class="form-control" id="yuanwidth" name="yuanwidth" readonly="readonly">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group input-group-sm">
+		      					<div class="input-group-addon">高</div>
+										<input type="text" class="form-control" id="yuanheight" name="yuanheight" readonly="readonly">
+									</div>
+								</div>
+							</form>
+							<button class="btn btn-primary" type="button" id="yescut">确定裁剪</button>
+						</div>
+						<div class="col-xs-11 imgcutwrap">
+							<div class="imgcutyes"></div>
+							<div class="imgcutdiv">
+								<img src="" id="imgcutimgsrc" class="imgcutimgsrc">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--图片上传表单模态框-->
+		<div class="modal fade" id="imgcutmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+	  	  <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title">图片上传</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>
+		        	<form action="{:U('Imgcut/imgup')}" id="imgupform" role="form" method="post" enctype="multipart/form-data">
+		        		<div class="form-group">
+		        			<input type="file" name="file" id="filer_input">
+		        		</div>
+      				</form>
+		        </p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		        <button type="button" class="btn btn-primary" id="startup">开始上传</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+<include file="Index/foot" />
+
+<script src="_JSPATH_/jquery.filer.min.js"></script>
+<script src="_JSPATH_/jquery.Jcrop.min.js"></script>
+<script>
+	$(function(){
+		document.querySelector(".list-group-item[data-hover='{$currnav}']").className += " active"
+
+		//图片上传
+		$('#filer_input').filer({
+			limit: 1,
+	    showThumbs: true,
+	    extensions: ['jpg', 'jpeg', 'png', 'gif'],
+	    maxSize: {$Think.config.MAX_CUT_SIZE},
+	    templates: {
+        box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
+        item: '<li class="jFiler-item">\
+                    <div class="jFiler-item-container">\
+                        <div class="jFiler-item-inner">\
+                            <div class="jFiler-item-thumb">\
+                                <div class="jFiler-item-status"></div>\
+                                <div class="jFiler-item-info">\
+                                    <span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
+                                    <span class="jFiler-item-others">{{fi-size2}}</span>\
+                                </div>\
+                                {{fi-image}}\
+                            </div>\
+                            <div class="jFiler-item-assets jFiler-row">\
+                                <ul class="list-inline pull-left">\
+                                    <li>{{fi-progressBar}}</li>\
+                                </ul>\
+                                <ul class="list-inline pull-right">\
+                                    <li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
+                                </ul>\
+                            </div>\
+                        </div>\
+                    </div>\
+                </li>',
+        itemAppend: '<li class="jFiler-item">\
+                        <div class="jFiler-item-container">\
+                            <div class="jFiler-item-inner">\
+                                <div class="jFiler-item-thumb">\
+                                    <div class="jFiler-item-status"></div>\
+                                    <div class="jFiler-item-info">\
+                                        <span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
+                                        <span class="jFiler-item-others">{{fi-size2}}</span>\
+                                    </div>\
+                                    {{fi-image}}\
+                                </div>\
+                                <div class="jFiler-item-assets jFiler-row">\
+                                    <ul class="list-inline pull-left">\
+                                        <li><span class="jFiler-item-others">{{fi-icon}}</span></li>\
+                                    </ul>\
+                                    <ul class="list-inline pull-right">\
+                                        <li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
+                                    </ul>\
+                                </div>\
+                            </div>\
+                        </div>\
+                    </li>',
+        progressBar: '<div class="bar"></div>',
+        itemAppendToEnd: true,
+        removeConfirmation: false,
+        _selectors: {
+            list: '.jFiler-items-list',
+            item: '.jFiler-item',
+            progressBar: '.bar',
+            remove: '.jFiler-item-trash-action'
+        }
+	    },
+	    onSelect: function(){
+	    	$('#startup').off('click')
+	    	$('#startup').click(function(){
+	    		$('.bg-mask').show()
+	    		if( Oimgcut ){
+	  				Oimgcut.destroy()
+	  			}
+		  		$('#imgupform').ajaxSubmit(function(msg){
+		  			$('#inputurl').val("{$Think.config.FULL_HOST}"+msg)
+		  			$('#imgurl').val(msg)
+						$('#imgcutimgsrc').attr('src', '{$Think.config.FULL_HOST}'+msg)
+						$('#imgcutimgsrc').removeAttr('style')
+		  			$('#imgcutmodal').modal('hide')
+	  				initJcrop(msg)
+		  			$('.bg-mask').hide()
+		  		})
+		  		return false;
+		  	})
+	    },
+	    onEmpty: function(){
+	    	$('#startup').off('click')
+	    	$('#startup').click(function(){
+	    		alert("请选择一张图片上传再进行操作！");
+	    	})
+	    },
+	   	captions:{
+		    button: "选择文件",
+		    feedback: "选择上传的文件",
+		    feedback2: "个文件被选择",
+		    drop: "把文件拖动到这里上传",
+		    removeConfirmation: "确定删除这个文件?",
+		    errors: {
+	        filesLimit: "只能上传 {{fi-limit}} 个文件.",
+	        filesType: "只能上传图像文件.",
+	        filesSize: "{{fi-name}} 太大了，允许上传的文件最大为 {{fi-maxSize}} MB.",
+	        filesSizeAll: "选择的文件太大了，允许上传的文件最大为 {{fi-maxSize}} MB."
+		    }
+			}
+		})
+
+		var Oimgcut;	//裁剪存储变量
+		function initJcrop(imgurl){
+			Oimgcut = $.Jcrop('#imgcutimgsrc',{
+				onChange:   showCoords,
+	      onSelect:   showCoords2,
+	      onRelease:  clearCoords,
+	      bgFade: true
+			})
+			Oimgcut.setImage('{$Think.config.FULL_HOST}' + imgurl, function(){
+        Oimgcut.animateTo([0,0,50,80])
+        $('#yuanwidth').val( Oimgcut.getBounds()[0] )
+        $('#yuanheight').val( Oimgcut.getBounds()[1] )
+        $('#imgurl').val(imgurl)
+        $('#yescut').off('click')
+        $('#yescut').click(function(){
+        	yescut()
+        })
+     	})
+		}
+		function showCoords(c){
+	    $('#x1').val(c.x)
+	    $('#y1').val(c.y)
+	    $('#width').val(c.w)
+	    $('#height').val(c.h)
+	 	}
+		function showCoords2(c){
+	    showCoords(c)
+	    $('#yescut').off('click')
+	    $('#yescut').click(function(){
+      	yescut()
+      })
+	 	}
+		$('#imgcutform').on('change','input[type="tel"]',function(e){
+			if( !Oimgcut ){
+				return false
+			}
+      var x1 = parseInt( $('#x1').val() ),
+          y1 = parseInt( $('#y1').val() ),
+          w = parseInt( $('#width').val() ),
+          h = parseInt( $('#height').val() );
+      if( $(this).attr('id') == 'x1' ){
+      	if( x1>($('#yuanwidth').val()-w) ){
+	      	x1 = ($('#yuanwidth').val()-w)
+	      }
+      }
+      if( $(this).attr('id') == 'y1' ){
+      	if( y1>($('#yuanheight').val()-h) ){
+	      	y1 = ($('#yuanheight').val()-h)
+	      }
+      }
+	    if( $(this).attr('id') == 'width' ){
+	    	if( w > ($('#yuanwidth').val()-x1) ){
+					w = ($('#yuanwidth').val()-x1)
+	      }
+	    }
+	    if( $(this).attr('id') == 'height' ){
+	    	if( h > ($('#yuanheight').val()-y1) ){
+					h = ($('#yuanheight').val()-y1)
+	      }
+	    }
+
+      var x2 = w + x1,
+    		  y2 = h + y1;
+    	Oimgcut.animateTo([x1,y1,x2,y2])
+    });
+		function clearCoords(){
+	    $('#imgcutform input[type="tel"]').val('')
+	    $('#yescut').off('click')
+	  };
+		
+		function yescut(){
+			$('.bg-mask').show()
+			Oimgcut.destroy()
+			$('#imgcutimgsrc').removeAttr('src')
+			$('#imgcutform').ajaxSubmit(function(msg){
+				if( msg == 404 ){
+					msg = "Public/images/error.jpg"
+					alert("出错了，请刷新重来！")
+					yescutFun(msg, "<h4>从火星来的错误，正在赶回火星，请刷新重试</h4>")
+				}else{
+					yescutFun(msg, '<h4>裁剪完成，请将图片另存到本地<!--或点击右侧下载按钮 <a href="javascript:;" class="btn btn-primary">下载图片</a>--></h4>')
+				}
+			})
+		}
+		function yescutFun(msg, tip){
+			$('#inputurl').val("{$Think.config.FULL_HOST}"+msg)
+			$('#imgcutimgsrc').attr('src', '{$Think.config.FULL_HOST}'+msg)
+			$('#imgcutimgsrc').removeAttr('style')
+			$('.imgcutyes').html(tip)
+			$('#yescut').off('click')
+			$('.bg-mask').hide()
+		}
+		
+		$('#loadimg').click(function(){
+			$('.bg-mask').show()
+			if( $('#inputurl').val().replace(/(^\s*)|(\s*$)/g, "").length > 0 ){
+				$('#imgdownform').ajaxSubmit(function(msg){
+					if( msg == 404 ){
+						$('.bg-mask').hide()
+						alert("请输入正确的图片链接！")
+					}else{
+						if( Oimgcut ){
+		  				Oimgcut.destroy()
+		  			}
+						yescutFun(msg,"")
+	  				initJcrop(msg)
+					}
+				})
+			}else{
+				$('.bg-mask').hide()
+				alert("请输入完整的图片链接之后再点击加载，或者直接上传一张图片进行操作！")
+			}
+		})
+	})
+</script>

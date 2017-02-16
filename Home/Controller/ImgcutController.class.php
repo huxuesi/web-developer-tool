@@ -7,6 +7,11 @@ class ImgcutController extends PublicController {
 		$this->display("imgcut");
 	}
 	
+	public function imgcompress() {
+		$this->assign("currnav","Imgcompress");
+		$this->display("imgcompress");
+	}
+	
 	public function imgup() {
 		if( $_FILES['file']['error'] == "0" ){
 			$upload = new \Think\Upload( C('HOME_UPIMG') );	// 实例化上传类
