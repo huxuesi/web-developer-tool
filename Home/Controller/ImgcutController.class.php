@@ -9,6 +9,7 @@ class ImgcutController extends PublicController {
 	
 	public function imgcompress() {
 		$this->assign("currnav","Imgcompress");
+		dump($_FILES);
 		$this->display("imgcompress");
 	}
 	

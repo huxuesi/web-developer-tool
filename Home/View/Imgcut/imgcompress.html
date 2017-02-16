@@ -1,40 +1,44 @@
 <include file="Index/head" title="图片压缩" />
 
-		<link rel="stylesheet" href="_CSSPATH_/jquery.filer.css" />
-		<link rel="stylesheet" href="_CSSPATH_/jquery.filer-dragdropbox-theme.css" />
+<link rel="stylesheet" href="_CSSPATH_/jquery.filer.css" />
+<link rel="stylesheet" href="_CSSPATH_/jquery.filer-dragdropbox-theme.css" />
 
-		<div class="container-fluid">
-			<div class="row pb25">
-				<include file="Index/leftnav" />
-				<div class="col-md-10">
-					<div class="box-border">
-						<h3>图片压缩 <small>（图片最大不能超过 {$Think.config.MAX_UPLOAD_SIZE} M，图片越大，处理时间越长）</small></h3>
-	        	<form action="{:U('Imgcut/imgup')}" id="imgupform" role="form" method="post" enctype="multipart/form-data">
-	        		<div class="form-group">
-	        			<input type="file" name="file" id="filer_input">
-	        		</div>
-    				</form>
+<div class="container-fluid">
+	<div class="row pb25">
+		<include file="Index/leftnav" />
+		<div class="col-md-10">
+			<div class="box-border">
+				<h3>图片压缩 <small>（图片最大不能超过 {$Think.config.MAX_UPLOAD_SIZE} M，图片越大，处理时间越长）</small></h3>
+				<form action="{:U('Imgcut/imgup')}" id="imgupform" role="form" method="post" enctype="multipart/form-data">
+					<div class="form-group">
+						<input type="file" name="files[]" id="filer_input" multiple="multiple">
+						<input type="submit" class="btn-custom green" value="提交">
 					</div>
-				</div>
+				</form>
 			</div>
 		</div>
+	</div>
+</div>
 
 <include file="Index/foot" />
 
 <script src="_JSPATH_/jquery.filer.min.js"></script>
 <script>
-	$(function(){
+	$(function() {
 		document.querySelector(".list-group-item[data-hover='{$currnav}']").className += " active"
 
 		//图片上传
 		$('#filer_input').filer({
-			limit: 1,
-	    showThumbs: true,
-	    extensions: ['jpg', 'jpeg', 'png', 'gif'],
-	    maxSize: {$Think.config.MAX_UPLOAD_SIZE},
-	    templates: {
-        box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
-        item: '<li class="jFiler-item">\
+
+			limit: 25,
+			extensions: ['jpg', 'jpeg', 'png', 'gif'],
+			maxSize: { $Think.config.MAX_UPLOAD_SIZE },
+			changeInput: '<div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-folder"></i></div><div class="jFiler-input-text"><h3>Click on this box</h3> <span style="display:inline-block; margin: 15px 0">or</span></div><a class="jFiler-input-choose-btn blue">Browse Files</a></div></div>',
+			showThumbs: true,
+			theme: "dragdropbox",
+			templates: {
+				box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
+				item: '<li class="jFiler-item">\
                     <div class="jFiler-item-container">\
                         <div class="jFiler-item-inner">\
                             <div class="jFiler-item-thumb">\
@@ -56,7 +60,7 @@
                         </div>\
                     </div>\
                 </li>',
-        itemAppend: '<li class="jFiler-item">\
+				itemAppend: '<li class="jFiler-item">\
                         <div class="jFiler-item-container">\
                             <div class="jFiler-item-inner">\
                                 <div class="jFiler-item-thumb">\
@@ -78,34 +82,32 @@
                             </div>\
                         </div>\
                     </li>',
-        progressBar: '<div class="bar"></div>',
-        itemAppendToEnd: true,
-        removeConfirmation: false,
-        _selectors: {
-            list: '.jFiler-items-list',
-            item: '.jFiler-item',
-            progressBar: '.bar',
-            remove: '.jFiler-item-trash-action'
-        }
-	    },
-	    onSelect: function(){
-	    
-	    },
-	    onEmpty: function(){
-	    	
-	    },
-	   	captions:{
-		    button: "选择文件",
-		    feedback: "选择上传的文件",
-		    feedback2: "个文件被选择",
-		    drop: "把文件拖动到这里上传",
-		    removeConfirmation: "确定删除这个文件?",
-		    errors: {
-	        filesLimit: "只能上传 {{fi-limit}} 个文件.",
-	        filesType: "只能上传图像文件.",
-	        filesSize: "{{fi-name}} 太大了，允许上传的文件最大为 {{fi-maxSize}} MB.",
-	        filesSizeAll: "选择的文件太大了，允许上传的文件最大为 {{fi-maxSize}} MB."
-		    }
+				itemAppendToEnd: false,
+				removeConfirmation: true,
+				_selectors: {
+					list: '.jFiler-items-list',
+					item: '.jFiler-item',
+					remove: '.jFiler-item-trash-action'
+				}
+			},
+			onSelect: function() {
+
+			},
+			onEmpty: function() {
+
+			},
+			captions: {
+				button: "选择文件",
+				feedback: "选择上传的文件",
+				feedback2: "个文件被选择",
+				drop: "把文件拖动到这里上传",
+				removeConfirmation: "确定删除这个文件?",
+				errors: {
+					filesLimit: "只能上传 {{fi-limit}} 个文件.",
+					filesType: "只能上传图像文件.",
+					filesSize: "{{fi-name}} 太大了，允许上传的文件最大为 {{fi-maxSize}} MB.",
+					filesSizeAll: "选择的文件太大了，允许上传的文件最大为 {{fi-maxSize}} MB."
+				}
 			}
 		})
 	})
