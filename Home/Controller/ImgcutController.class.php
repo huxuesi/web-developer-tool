@@ -13,7 +13,7 @@ class ImgcutController extends PublicController {
 	}
 	
 	public function imgup() {
-		/*if( $_FILES['file']['error'] == "0" ){
+		if( $_FILES['file']['error'] == "0" ){
 			$upload = new \Think\Upload( C('HOME_UPIMG') );	// 实例化上传类
 	    // 上传单个文件 
     	$info = $upload->uploadOne($_FILES['file']);
@@ -23,8 +23,8 @@ class ImgcutController extends PublicController {
 	    }else{	// 上传成功
 				$photo_url = $info['savepath'].$info['savename'];
 	    }
-		}*/
-		$this->ajaxReturn( $_FILES );
+		}
+		$this->ajaxReturn( $photo_url );
 	}
 	
 	public function imgcut(){
