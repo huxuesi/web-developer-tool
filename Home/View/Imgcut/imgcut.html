@@ -9,7 +9,7 @@
 				<include file="Index/leftnav" />
 				<div class="col-md-10">
 					<div class="box-border">
-						<h3>图片裁剪 <small>（图片最大不能超过7M）</small></h3>
+						<h3>图片裁剪 <small>（图片最大不能超过 20 M，图片越大，处理时间越长）</small></h3>
 						<form action="{:U('Imgcut/imgdown')}" role="form" id="imgdownform" method="post">
 							<div class="form-group">
 						    <div class="input-group col-md-10">
@@ -115,7 +115,7 @@
 			limit: 1,
 	    showThumbs: true,
 	    extensions: ['jpg', 'jpeg', 'png', 'gif'],
-	    maxSize: 7,
+	    maxSize: 20,
 	    templates: {
         box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
         item: '<li class="jFiler-item">\

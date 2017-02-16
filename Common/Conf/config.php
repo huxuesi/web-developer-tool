@@ -26,7 +26,7 @@ return array(
 
 	//设置前台图片上传格式
 	'HOME_UPIMG' => array(
-		'maxSize' => 7145728,															//设置文件上传大小
+		'maxSize' => 20145728,														//设置文件上传大小
 		'exts' => array('jpg', 'gif', 'png', 'jpeg'),			//设置文件上传类型
 		'rootPath' => "./",																//设置文件上传根目录
 		'savePath' => 'Public/uploads/home/',							//设置附件上传（子）目录
@@ -40,11 +40,11 @@ return array(
 	// 数据库设置
 	'DB_TYPE'               =>  'mysql',     	// 数据库类型
 	'DB_HOST'               =>  'localhost', 	// 服务器地址
-	'DB_NAME'               =>  '1',   			// 数据库名
-	'DB_USER'               =>  '1',      	// 用户名
-	'DB_PWD'                =>  '1',      	// 密码
+	'DB_NAME'               =>  'tool',   			// 数据库名
+	'DB_USER'               =>  'tool',      	// 用户名
+	'DB_PWD'                =>  '1R7c&etxKTafkc9r-tool',      	// 密码
 	'DB_PORT'               =>  '3306',      	// 端口
-	'DB_PREFIX'             =>  '1',     		// 数据库表前缀
+	'DB_PREFIX'             =>  'hxs_',     		// 数据库表前缀
 	'DB_CHARSET'			  		=>  'utf8',	 		 	//数据库编码
 
 	//开启Smarty模板引擎
