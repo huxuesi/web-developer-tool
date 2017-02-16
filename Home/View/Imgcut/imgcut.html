@@ -115,7 +115,7 @@
 			limit: 1,
 	    showThumbs: true,
 	    extensions: ['jpg', 'jpeg', 'png', 'gif'],
-	    maxSize: 20,
+	    maxSize: {$Think.config.MAX_UPLOAD_SIZE},
 	    templates: {
         box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
         item: '<li class="jFiler-item">\
