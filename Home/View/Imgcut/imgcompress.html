@@ -25,11 +25,13 @@
 						    </div>
 							</div>
 						</form>
-						<form action="{:U('Imgcut/imgcompressfun')}" role="form" id="imgcompressform" class="form-inline" method="post">
+						<form action="{:U('Imgcut/imgcompressfun')}" role="form" id="imgcompressform" class="form-inline hidden" method="post">
 							<div class="form-group">
 								<span class="fz16">设置压缩比：</span>
 					      <input type="range" id="compressnum" name="compressnum" data-slider-id="exslider" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="75">
-					      <span class="fz16" id="compressnumval">&nbsp;&nbsp;75%</span>
+					      <input type="hidden" id="imgurl">
+					      <span class="fz16" id="compressnumval">&nbsp;&nbsp;75%</span>&nbsp;&nbsp;
+					      <button class="btn btn-primary" type="button" id="startcompress">开始压缩</button>
 							</div>
 						</form>
 						<div class="col-xs-12 imgcutwrap">
@@ -151,8 +153,10 @@
 	    		$('.bg-mask').show()
 		  		$('#imgupform').ajaxSubmit(function(msg){
 		  			$('#inputurl').val("{$Think.config.FULL_HOST}"+msg)
+		  			$('#imgurl').val(msg)
 						$('#imgcutimgsrc').attr('src', '{$Think.config.FULL_HOST}'+msg)
 		  			$('#imgcutmodal').modal('hide')
+		  			$('#imgcompressform').removeClass('hidden')
 		  			$('.bg-mask').hide()
 		  		})
 		  	})
