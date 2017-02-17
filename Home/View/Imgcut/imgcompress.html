@@ -24,9 +24,9 @@
 						</form>
 						<form action="{:U('Imgcut/imgcompressfun')}" role="form" id="imgcompressform" method="post">
 							<div class="form-group">
-						    <div class="input-group">
+						    <div class="input-group col-md-6">
 						      <div class="input-group-addon">设定压缩比</div>
-						      <input type="range" class="form-control">
+						      <input type="range" min="1" max="100" step="1"value="75" class="form-control">
 						      <div class="input-group-addon">%</div>
 						    </div>
 							</div>
