@@ -25,7 +25,9 @@ class ImgcutController extends PublicController {
 		if( is_numeric( $num ) && $imgurl!='' ){
 			$image = new \Think\Image(\Think\Image::IMAGE_IMAGICK);
 			$image->open( './'.$imgurl );
-			$image->save('./'.$newurl, null, $num);
+			$w = $image->width();
+			$h = $image->height();
+			$image->thumb($w, $h, \Think\Image::IMAGE_THUMB_FIXED)->save('./'.$newurl);
 			$this->ajaxReturn( ltrim($newurl, './') );
 		}else{
 			$this->ajaxReturn( 404 );
