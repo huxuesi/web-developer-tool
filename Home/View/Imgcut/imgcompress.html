@@ -171,8 +171,6 @@
 					}else{
 						$('#inputurl').val("{$Think.config.FULL_HOST}"+msg)
 						$('#imgcutimgsrc').attr('src', '{$Think.config.FULL_HOST}'+msg)
-						$('.imgcutyes').html('<h4>压缩完成，请将图片另存到本地<!--或点击右侧下载按钮 <a href="javascript:;" class="btn btn-primary">下载图片</a>-->')
-						$('#yescut').off('click')
 						$('.bg-mask').hide()
 					}
 				})
