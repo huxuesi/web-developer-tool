@@ -160,5 +160,26 @@
 		    }
 			}
 		})
+		
+		$('#loadimg').click(function(){
+			$('.bg-mask').show()
+			if( $('#inputurl').val().replace(/(^\s*)|(\s*$)/g, "").length > 0 ){
+				$('#imgdownform').ajaxSubmit(function(msg){
+					if( msg == 404 ){
+						$('.bg-mask').hide()
+						alert("请输入正确的图片链接！")
+					}else{
+						if( Oimgcut ){
+		  				Oimgcut.destroy()
+		  			}
+						yescutFun(msg,"")
+	  				initJcrop(msg)
+					}
+				})
+			}else{
+				$('.bg-mask').hide()
+				alert("请输入完整的图片链接之后再点击加载，或者直接上传一张图片进行操作！")
+			}
+		})
 	})
 </script>
