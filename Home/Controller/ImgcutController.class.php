@@ -100,8 +100,9 @@ class ImgcutController extends PublicController {
 		$remoteurl = trim(I('get.remoteurl'));
 		if( !empty($remoteurl) ){
 			if( filter_var($remoteurl, FILTER_VALIDATE_URL) ){
+				$filename = pathinfo($remoteurl, PATHINFO_BASENAME);
 				header("Content-type: octet/stream");
-				header("Content-disposition:attachment;filename=".$remoteurl.";");
+				header("Content-disposition:attachment;filename=".$filename.";");
 				header("Content-Length:".filesize($remoteurl));
 				readfile($remoteurl);
 				exit;

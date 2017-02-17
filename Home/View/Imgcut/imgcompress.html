@@ -214,7 +214,7 @@
 					$('#inputurl').val("{$Think.config.FULL_HOST}"+msg)
 					$('#imgcutimgsrc').attr('src', '{$Think.config.FULL_HOST}'+msg)
 		  		$('#imgcompressform').addClass('hidden')
-		  		$('.imgcutyes').html('<h4>压缩完成，请将图片另存到本地或&nbsp;&nbsp;&nbsp;<a href="javascript:;" id="download" imgurl="{$Think.config.FULL_HOST}'+msg+'" class="btn btn-primary">下载图片</a></h4>')
+		  		$('.imgcutyes').html('<h4>压缩完成，请将图片另存到本地或&nbsp;&nbsp;&nbsp;<a href="{:U('Imgcut/imgdownload')}?remoteurl={$Think.config.FULL_HOST}'+msg+'" id="download" class="btn btn-primary">下载图片</a></h4>')
 					$('.bg-mask').hide()
 				}
 			})
