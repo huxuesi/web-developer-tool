@@ -150,6 +150,7 @@
 	    onSelect: function(){
 	    	$('#startup').off('click')
 	    	$('#startup').click(function(){
+	  			$('.imgcutyes').html('')
 	    		$('.bg-mask').show()
 		  		$('#imgupform').ajaxSubmit(function(msg){
 		  			$('#inputurl').val("{$Think.config.FULL_HOST}"+msg)
