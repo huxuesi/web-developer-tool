@@ -5,6 +5,9 @@
 .w100{
 	width: 100% !important;
 }
+.fz16{
+	font-size: 16px;
+}
 .xs-nav-topwrap{
 	height: 65px;
 }
@@ -85,6 +88,9 @@
 .imgcutimgsrc{
 	background-color: #fff;
 }
+/*end*/
+
+/*imgcompress*/
 /*end*/
 
 /*unixtime*/

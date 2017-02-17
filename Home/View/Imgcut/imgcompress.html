@@ -2,6 +2,9 @@
 
 		<link rel="stylesheet" href="_CSSPATH_/jquery.filer.css" />
 		<link rel="stylesheet" href="_CSSPATH_/bootstrap-slider.min.css" />
+		<style>
+			.slider-selection{ background: #428BCA;}
+		</style>
 
 		<div class="container-fluid">
 			<div class="row pb25">
@@ -24,9 +27,9 @@
 						</form>
 						<form action="{:U('Imgcut/imgcompressfun')}" role="form" id="imgcompressform" class="form-inline" method="post">
 							<div class="form-group">
-								<label for="compressnum">设置压缩比</label>
+								<span class="fz16">设置压缩比：</span>
 					      <input type="range" id="compressnum" name="compressnum" data-slider-id="exslider" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="75">
-					      <label for="compressnum">%</label>
+					      <span class="fz16" id="compressnumval">&nbsp;&nbsp;75%</span>
 							</div>
 						</form>
 						<div class="col-xs-12 imgcutwrap">
@@ -71,7 +74,15 @@
 <script>
 	$(function(){
 		document.querySelector(".list-group-item[data-hover='{$currnav}']").className += " active"
-
+		
+		//range美化
+		var mySlider = new Slider("#compressnum", {
+    	
+		});
+		mySlider.on("slide", function(slideEvt) {
+			$("#compressnumval").text(slideEvt.value+'%')
+		})
+	
 		//图片上传
 		$('#filer_input').filer({
 			limit: 1,
@@ -167,10 +178,6 @@
 		    }
 			}
 		})
-		
-		var mySlider = new Slider("#compressnum", {
-    	// initial options object
-		});
 		
 		$('#loadimg').click(function(){
 			$('.bg-mask').show()
