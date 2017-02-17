@@ -25,8 +25,6 @@ class ImgcutController extends PublicController {
 		if( is_numeric( $num ) && $imgurl!='' ){
 			$image = new \Think\Image(\Think\Image::IMAGE_IMAGICK);
 			$image->open( './'.$imgurl );
-			$w = $image->width();
-			$h = $image->height();
 			$image->save($newurl, null, $num);
 			$this->ajaxReturn( ltrim($newurl, './') );
 		}else{
@@ -49,7 +47,7 @@ class ImgcutController extends PublicController {
 		$this->ajaxReturn( $photo_url );
 	}
 	
-	public function imgcut(){
+	public function imgcut() {
 		//创建目录
 		$path = C("IMGOUT");
 		if(!is_dir($path)){
@@ -72,7 +70,7 @@ class ImgcutController extends PublicController {
 		}
 	}
 	
-	public function imgdown(){
+	public function imgdown() {
 		//创建目录
 		$path = C("IMGDOWN");
 		if(!is_dir($path)){
@@ -90,6 +88,19 @@ class ImgcutController extends PublicController {
 					$imgdownload->curlDownload($remoteurl, $newurl);
 					$this->ajaxReturn( ltrim($newurl, './') );
 				}
+			}else{
+				$this->ajaxReturn( 404 );
+			}
+		}else{
+			$this->ajaxReturn( 404 );
+		}
+	}
+	
+	public function imgdownload() {
+		$remoteurl = trim(I('get.remoteurl'));
+		if( !empty($remoteurl) ){
+			if( filter_var($remoteurl, FILTER_VALIDATE_URL) ){
+				
 			}else{
 				$this->ajaxReturn( 404 );
 			}
