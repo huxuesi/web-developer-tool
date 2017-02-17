@@ -203,7 +203,7 @@
 		
 		$('#startcompress').click(function(){
 			$('.bg-mask').show()
-			$('#startcompress').ajaxSubmit(function(msg){
+			$('#imgcompressform').ajaxSubmit(function(msg){
 				if( msg == 404 ){
 					$('.bg-mask').hide()
 					alert("请输入正确的图片链接！")
