@@ -185,6 +185,7 @@
 		
 		$('#loadimg').click(function(){
 			$('.bg-mask').show()
+			$('.imgcutyes').html('')
 			$('#imgcompressform').removeClass('hidden')
 			if( $('#inputurl').val().replace(/(^\s*)|(\s*$)/g, "").length > 0 ){
 				$('#imgdownform').ajaxSubmit(function(msg){
