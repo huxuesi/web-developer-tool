@@ -1,7 +1,7 @@
 <include file="Index/head" title="图片压缩" />
 
 		<link rel="stylesheet" href="_CSSPATH_/jquery.filer.css" />
-		<link rel="stylesheet" href="_CSSPATH_/jquery.Jcrop.min.css" />
+		<link rel="stylesheet" href="_CSSPATH_/bootstrap-slider.min.css" />
 
 		<div class="container-fluid">
 			<div class="row pb25">
@@ -26,7 +26,7 @@
 							<div class="form-group">
 						    <div class="input-group col-md-6">
 						      <div class="input-group-addon">设定压缩比</div>
-						      <input type="range" min="1" max="100" step="1"value="75" class="form-control">
+						      <input type="range" id="compressnum" name="compressnum" min="1" max="100" step="1"value="75" class="form-control">
 						      <div class="input-group-addon">%</div>
 						    </div>
 							</div>
@@ -69,7 +69,7 @@
 <include file="Index/foot" />
 
 <script src="_JSPATH_/jquery.filer.min.js"></script>
-<script src="_JSPATH_/jquery.Jcrop.min.js"></script>
+<script src="_JSPATH_/bootstrap-slider.min.js"></script>
 <script>
 	$(function(){
 		document.querySelector(".list-group-item[data-hover='{$currnav}']").className += " active"
@@ -169,6 +169,10 @@
 		    }
 			}
 		})
+		
+		var mySlider = new Slider("compressnum", {
+    	// initial options object
+		});
 		
 		$('#loadimg').click(function(){
 			$('.bg-mask').show()
