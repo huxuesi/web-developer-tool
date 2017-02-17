@@ -29,7 +29,7 @@
 							<div class="form-group">
 								<span class="fz16">设置压缩比：</span>
 					      <input type="range" id="compressnum" name="compressnum" data-slider-id="exslider" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="75">
-					      <input type="hidden" id="imgurl">
+					      <input type="hidden" id="imgurl" name="imgurl">
 					      <span class="fz16" id="compressnumval">&nbsp;&nbsp;75%</span>&nbsp;&nbsp;
 					      <button class="btn btn-primary" type="button" id="startcompress">开始压缩</button>
 							</div>
@@ -199,6 +199,22 @@
 				$('.bg-mask').hide()
 				alert("请输入完整的图片链接之后再点击加载，或者直接上传一张图片进行操作！")
 			}
+		})
+		
+		$('#startcompress').click(function(){
+			$('.bg-mask').show()
+			$('#startcompress').ajaxSubmit(function(msg){
+				if( msg == 404 ){
+					$('.bg-mask').hide()
+					alert("请输入正确的图片链接！")
+				}else{
+					$('#inputurl').val("{$Think.config.FULL_HOST}"+msg)
+					$('#imgcutimgsrc').attr('src', '{$Think.config.FULL_HOST}'+msg)
+		  		$('#imgcompressform').addClass('hidden')
+		  		$('.imgcutyes').html('<h4>压缩完成，请将图片另存到本地或 <a href="javascript:;" class="btn btn-primary">下载图片</a></h4>')
+					$('.bg-mask').hide()
+				}
+			})
 		})
 	})
 </script>
