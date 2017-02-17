@@ -27,7 +27,7 @@ class ImgcutController extends PublicController {
 			$image->open( './'.$imgurl );
 			$w = $image->width();
 			$h = $image->height();
-			$image->save('./'.$newurl, null, $num);
+			$image->save($newurl, null, $num);
 			$this->ajaxReturn( ltrim($newurl, './') );
 		}else{
 			$this->ajaxReturn( 404 );
@@ -65,7 +65,7 @@ class ImgcutController extends PublicController {
 		if( is_numeric( $width ) && is_numeric( $height ) && is_numeric( $x1 ) && is_numeric( $y1 ) && $imgurl!='' ){
 			$image = new \Think\Image(\Think\Image::IMAGE_IMAGICK);
 			$image->open( './'.$imgurl );
-			$image->crop($width, $height, $x1, $y1)->save('./'.$newurl);
+			$image->crop($width, $height, $x1, $y1)->save($newurl);
 			$this->ajaxReturn( ltrim($newurl, './') );
 		}else{
 			$this->ajaxReturn( 404 );
