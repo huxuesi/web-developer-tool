@@ -291,7 +291,7 @@
 					alert("出错了，请刷新重来！")
 					yescutFun(msg, "<h4>从火星来的错误，正在赶回火星，请刷新重试</h4>")
 				}else{
-					yescutFun(msg, '<h4>裁剪完成，请将图片另存到本地或&nbsp;&nbsp;&nbsp;<a href="javascript:;" id="download" imgurl="{$Think.config.FULL_HOST}'+msg+'" class="btn btn-primary">下载图片</a></h4>')
+					yescutFun(msg, '<h4>裁剪完成，请将图片另存到本地或&nbsp;&nbsp;&nbsp;<a href="{:U('Imgcut/imgdownload')}?remoteurl={$Think.config.FULL_HOST}'+msg+'" id="download" class="btn btn-primary">下载图片</a></h4>')
 				}
 			})
 		}
