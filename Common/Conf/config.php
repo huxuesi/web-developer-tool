@@ -11,6 +11,7 @@ return array(
 
 	'IMGOUT' => "./Public/uploads/imgout/".date("Ymd",time()),
 	'IMGDOWN' => "./Public/uploads/download/".date("Ymd",time()),
+	'IMGCOMPRESS' => "./Public/uploads/compress/".date("Ymd",time()),
 
 	//显示调试信息
 	'SHOW_PAGE_TRACE' => false,

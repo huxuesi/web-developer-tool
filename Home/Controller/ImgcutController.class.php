@@ -13,7 +13,23 @@ class ImgcutController extends PublicController {
 	}
 	
 	public function imgcompressfun() {
-		$this->ajaxReturn( $_POST );
+		//创建目录
+		$path = C("IMGCOMPRESS");
+		if(!is_dir($path)){
+			mkdir($path, 0755, true);
+		}
+		$num = trim(I('post.compressnum'));
+		$imgurl = trim(I('post.imgurl'));
+		$ext = empty(pathinfo($imgurl, PATHINFO_EXTENSION))?"gif":pathinfo($imgurl, PATHINFO_EXTENSION);
+		$newurl = $path.'/'.date('Ymd',time()).time().mt_rand().'.'.$ext;
+		if( is_numeric( $num ) && $imgurl!='' ){
+			$image = new \Think\Image(\Think\Image::IMAGE_IMAGICK);
+			$image->open( './'.$imgurl );
+			$image->save('./'.$newurl, null, $num);
+			$this->ajaxReturn( ltrim($newurl, './') );
+		}else{
+			$this->ajaxReturn( 404 );
+		}
 	}
 	
 	public function imgup() {
