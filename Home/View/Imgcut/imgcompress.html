@@ -22,51 +22,8 @@
 						    </div>
 							</div>
 						</form>
-						<div class="col-xs-1 imgcutset">
-							<h4>裁剪设置</h4>
-							<form action="{:U('Imgcut/imgcut')}" role="form" id="imgcutform" method="post">
-								<div class="form-group">
-									<div class="input-group input-group-sm">
-		      					<div class="input-group-addon">X</div>
-										<input type="tel" class="form-control" id="x1" name="x1">
-										<input type="hidden" name="imgurl" id="imgurl">
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="input-group input-group-sm">
-		      					<div class="input-group-addon">Y</div>
-										<input type="tel" class="form-control" id="y1" name="y1">
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="input-group input-group-sm">
-		      					<div class="input-group-addon">宽</div>
-										<input type="tel" class="form-control" id="width" name="width">
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="input-group input-group-sm">
-		      					<div class="input-group-addon">高</div>
-										<input type="tel" class="form-control" id="height" name="height">
-									</div>
-								</div>
-								<h4>原图尺寸</h4>
-								<div class="form-group">
-									<div class="input-group input-group-sm">
-		      					<div class="input-group-addon">宽</div>
-										<input type="text" class="form-control" id="yuanwidth" name="yuanwidth" readonly="readonly">
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="input-group input-group-sm">
-		      					<div class="input-group-addon">高</div>
-										<input type="text" class="form-control" id="yuanheight" name="yuanheight" readonly="readonly">
-									</div>
-								</div>
-							</form>
-							<button class="btn btn-primary" type="button" id="yescut">确定裁剪</button>
-						</div>
-						<div class="col-xs-11 imgcutwrap">
+						
+						<div class="col-xs-12 imgcutwrap">
 							<div class="imgcutyes"></div>
 							<div class="imgcutdiv">
 								<img src="" id="imgcutimgsrc" class="imgcutimgsrc">
