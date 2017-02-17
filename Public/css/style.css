@@ -91,6 +91,9 @@
 /*end*/
 
 /*imgcompress*/
+.list-group-item[data-hover="Imgcompress"]:after{
+	content: "（未完成）";
+}
 /*end*/
 
 /*unixtime*/
