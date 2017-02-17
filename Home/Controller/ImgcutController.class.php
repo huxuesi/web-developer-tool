@@ -27,7 +27,7 @@ class ImgcutController extends PublicController {
 			$image->open( './'.$imgurl );
 			$w = $image->width();
 			$h = $image->height();
-			$image->thumb($w, $h, \Think\Image::IMAGE_THUMB_FIXED)->save('./'.$newurl, null, $num);
+			$image->save('./'.$newurl, null, $num);
 			$this->ajaxReturn( ltrim($newurl, './') );
 		}else{
 			$this->ajaxReturn( 404 );
