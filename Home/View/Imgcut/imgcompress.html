@@ -22,13 +22,11 @@
 						    </div>
 							</div>
 						</form>
-						<form action="{:U('Imgcut/imgcompressfun')}" role="form" id="imgcompressform" method="post">
+						<form action="{:U('Imgcut/imgcompressfun')}" role="form" id="imgcompressform" class="form-inline" method="post">
 							<div class="form-group">
-						    <div class="input-group col-md-6">
-						      <div class="input-group-addon">设定压缩比</div>
-						      <input type="range" id="compressnum" name="compressnum" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="75">
-						      <div class="input-group-addon">%</div>
-						    </div>
+								<label for="compressnum">设置压缩比</label>
+					      <input type="range" id="compressnum" name="compressnum" data-slider-id="exslider" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="75">
+					      <label for="compressnum">%</label>
 							</div>
 						</form>
 						<div class="col-xs-12 imgcutwrap">
