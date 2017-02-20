@@ -327,11 +327,14 @@
 		
 		var img_obj = new Image();
 		var settimeimgsrc = setInterval(function(){
-			img_obj.src = document.getElementById('imgcutimgsrc').src
-			if( img_obj.complete ){
-				console.log('1')
-			}else{
-				console.log('0')
+			var src = document.getElementById('imgcutimgsrc').src
+			if( src != '' ){
+				img_obj.src = src
+				if( img_obj.complete ){
+					console.log('1')
+				}else{
+					console.log('0')
+				}
 			}
 		},500)
 	})
