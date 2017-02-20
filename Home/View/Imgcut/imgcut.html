@@ -327,7 +327,7 @@
 		
 		var img_obj = new Image();
 		var settimeimgsrc = setInterval(function(){
-			img_obj.src = document.getElementById('#imgcutimgsrc').src
+			img_obj.src = document.getElementById('#imgcutimgsrc').getAttribute('src')
 			if( img_obj.complete ){
 				console.log('1')
 			}else{
