@@ -36,6 +36,28 @@
 						</form>
 						<div class="col-xs-12 imgcutwrap">
 							<div class="imgcutyes"></div>
+							<div class="imgloading" style="display: none;">
+								<div class="spinner">
+								  <div class="spinner-container container1">
+								    <div class="circle1"></div>
+								    <div class="circle2"></div>
+								    <div class="circle3"></div>
+								    <div class="circle4"></div>
+								  </div>
+								  <div class="spinner-container container2">
+								    <div class="circle1"></div>
+								    <div class="circle2"></div>
+								    <div class="circle3"></div>
+								    <div class="circle4"></div>
+								  </div>
+								  <div class="spinner-container container3">
+								    <div class="circle1"></div>
+								    <div class="circle2"></div>
+								    <div class="circle3"></div>
+								    <div class="circle4"></div>
+								  </div>
+								</div>
+							</div>
 							<div class="imgcutdiv">
 								<img src="" id="imgcutimgsrc" class="imgcutimgsrc">
 							</div>
@@ -219,5 +241,18 @@
 				}
 			})
 		})
+		
+		var img_obj = new Image();
+		var settimeimgsrc = setInterval(function(){
+			var src = document.getElementById('imgcutimgsrc').src
+			if( src != '' ){
+				img_obj.src = src
+				if( img_obj.complete ){
+					document.querySelector('.imgloading').style.display = 'none'
+				}else{
+					document.querySelector('.imgloading').style.display = 'block'
+				}
+			}
+		}, 300)
 	})
 </script>
