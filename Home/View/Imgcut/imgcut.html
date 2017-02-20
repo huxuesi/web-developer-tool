@@ -326,7 +326,11 @@
 		})
 		
 		var settimeimgsrc = setInterval(function(){
-			console.log('1')
+			if( document.getElementById('#imgcutimgsrc').complete ){
+				console.log('1')
+			}else{
+				console.log('0')
+			}
 		},500)
 	})
 </script>
