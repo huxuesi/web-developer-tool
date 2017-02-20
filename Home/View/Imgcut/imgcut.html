@@ -325,8 +325,10 @@
 			}
 		})
 		
+		var img_obj = new Image();
 		var settimeimgsrc = setInterval(function(){
-			if( document.getElementById('#imgcutimgsrc').complete ){
+			img_obj.src = document.getElementById('#imgcutimgsrc').src
+			if( img_obj.complete ){
 				console.log('1')
 			}else{
 				console.log('0')
