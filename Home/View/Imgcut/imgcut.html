@@ -105,6 +105,7 @@
 
 <script src="_JSPATH_/jquery.filer.min.js"></script>
 <script src="_JSPATH_/jquery.Jcrop.min.js"></script>
+<script src="_JSPATH_/imagesloaded.pkgd.min.js"></script>
 <script>
 	$(function(){
 		document.querySelector(".list-group-item[data-hover='{$currnav}']").className += " active"
@@ -324,5 +325,13 @@
 				alert("请输入完整的图片链接之后再点击加载，或者直接上传一张图片进行操作！")
 			}
 		})
+		
+		$('#container').imagesLoaded( {
+		  // options...
+		  },
+		  function() {
+		    // images have loaded
+		  }
+		)
 	})
 </script>
