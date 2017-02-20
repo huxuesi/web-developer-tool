@@ -68,6 +68,16 @@
 						</div>
 						<div class="col-xs-11 imgcutwrap">
 							<div class="imgcutyes"></div>
+							<div class="imgloading" style="display: none;">
+								<span>图</span>
+								<span>片</span>
+								<span>加</span>
+								<span>载</span>
+								<span>中</span>
+								<span>.</span>
+								<span>.</span>
+								<span>.</span>
+							</div>
 							<div class="imgcutdiv">
 								<img id="imgcutimgsrc" class="imgcutimgsrc">
 							</div>
@@ -331,9 +341,9 @@
 			if( src != '' ){
 				img_obj.src = src
 				if( img_obj.complete ){
-					console.log('1')
+					document.querySelector('.imgloading').style.display = 'none'
 				}else{
-					console.log('0')
+					document.querySelector('.imgloading').style.display = 'block'
 				}
 			}
 		},500)
