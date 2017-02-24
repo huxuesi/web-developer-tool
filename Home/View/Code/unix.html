@@ -1,59 +1,59 @@
 <include file="Index/head" title="Unix时间戳转换" />
 
-		<link rel="stylesheet" href="_CSSPATH_/datedropper.css">
-		<link rel="stylesheet" href="_CSSPATH_/timedropper.min.css">
-		<div class="container-fluid">
-			<div class="row pb25">
-				<include file="Index/leftnav" />
-				<div class="col-md-10">
-					<div class="box-border">
-						<h3>Unix时间戳转换 <small>Unix时间戳被使用在Unix系统、类Unix系统、其他操作系统中被广泛采用</small></h3>
-						<h4 class="text-center curtimewrap">当前时间戳：<span id="curtime">{$curtime}</span><input id="hidtime" autoadd="1" type="hidden" value="{$curtime}"><button type="button" id="stoptime" mode="1" class="btn btn-primary btn-sm">停止</button> <button type="button" onclick="javascript:window.location.reload();" class="btn btn-primary btn-sm">刷新</button></h4>
-						<form action="{:U('Code/unixtimeajax')}" id="time-form" method="post" role="form" class="form-inline col-md-6 timeform">
-							<p>选择一个日期进行转换：</p>
-							<div class="form-group">
-								<div class="input-group">
-									<label class="input-group-addon curpoin" for="pickdate">日期</label>
-									<input type="text" id="pickdate" name="date" class="form-control" placeholder="点击选择日期 不选默认今日">
-								</div>
-							</div>
-							<div class="form-group col-md-4 time-ipt">
-								<div class="input-group">
-									<label class="input-group-addon curpoin" for="picktime">时间</label>
-									<input type="text" id="picktime" name="time" class="form-control" placeholder="点击选择时间">
-								</div>
-							</div>
-							<div class="form-group">
-								<button type="button" id="yessubmit" class="btn btn-primary">转换 <i class="glyphicon glyphicon-share-alt"></i></button>
-								<input type="hidden" name="type" value="1" readonly="readonly">
-							</div>
-						</form>
-						<div class="col-md-6">
-							<p>转换结果：</p>
-							<input type="text" class="form-control" id="unixtimere">
+<link rel="stylesheet" href="_CSSPATH_/datedropper.css">
+<link rel="stylesheet" href="_CSSPATH_/timedropper.min.css">
+<div class="container-fluid">
+	<div class="row pb25">
+		<include file="Index/leftnav" />
+		<div class="col-md-10">
+			<div class="box-border">
+				<h3>Unix时间戳转换 <small>Unix时间戳被使用在Unix系统、类Unix系统、其他操作系统中被广泛采用</small></h3>
+				<h4 class="text-center curtimewrap">当前时间戳：<span id="curtime">{$curtime}</span><input id="hidtime" autoadd="1" type="hidden" value="{$curtime}"><button type="button" id="stoptime" mode="1" class="btn btn-primary btn-sm">停止</button> <button type="button" onclick="javascript:window.location.reload();" class="btn btn-primary btn-sm">刷新</button></h4>
+				<form action="{:U('Code/unixtimeajax')}" id="time-form" method="post" role="form" class="form-inline col-md-6 timeform">
+					<p>选择一个日期进行转换：</p>
+					<div class="form-group">
+						<div class="input-group">
+							<label class="input-group-addon curpoin" for="pickdate">日期</label>
+							<input type="text" id="pickdate" name="date" class="form-control" placeholder="点击选择日期 不选默认今日">
 						</div>
-						<div class="row">
-							<form action="{:U('Code/unixtimeajax')}" id="timestamp-form" method="post" role="form" class="form-inline col-md-12 timestampform">
-								<div class="form-group col-md-5">
-									<p>输入一个时间戳进行转换：</p>
-									<input type="tel" id="timestamp" name="timestamp" class="form-control w100">
-								</div>
-								<div class="form-group col-md-1">
-									<p class="text-center">==></p>
-									<button type="button" id="reyessubmit" class="btn btn-primary">转换 <i class="glyphicon glyphicon-share-alt"></i></button>
-								</div>
-								<div class="form-group col-md-6">
-									<p>转换结果：</p>
-									<input type="text" class="form-control w100" id="timeunixre">
-									<input type="hidden" name="type" value="2" readonly="readonly">
-								</div>
-							</form>
-						</div>
-						
 					</div>
+					<div class="form-group col-md-4 time-ipt">
+						<div class="input-group">
+							<label class="input-group-addon curpoin" for="picktime">时间</label>
+							<input type="text" id="picktime" name="time" class="form-control" placeholder="点击选择时间">
+						</div>
+					</div>
+					<div class="form-group">
+						<button type="button" id="yessubmit" class="btn btn-primary">转换 <i class="glyphicon glyphicon-share-alt"></i></button>
+						<input type="hidden" name="type" value="1" readonly="readonly">
+					</div>
+				</form>
+				<div class="col-md-6">
+					<p>转换结果：</p>
+					<input type="text" class="form-control" id="unixtimere">
 				</div>
+				<div class="row">
+					<form action="{:U('Code/unixtimeajax')}" id="timestamp-form" method="post" role="form" class="form-inline col-md-12 timestampform">
+						<div class="form-group col-md-5">
+							<p>输入一个时间戳进行转换：</p>
+							<input type="tel" id="timestamp" name="timestamp" class="form-control w100">
+						</div>
+						<div class="form-group col-md-1">
+							<p class="text-center">==></p>
+							<button type="button" id="reyessubmit" class="btn btn-primary">转换 <i class="glyphicon glyphicon-share-alt"></i></button>
+						</div>
+						<div class="form-group col-md-6">
+							<p>转换结果：</p>
+							<input type="text" class="form-control w100" id="timeunixre">
+							<input type="hidden" name="type" value="2" readonly="readonly">
+						</div>
+					</form>
+				</div>
+				
 			</div>
 		</div>
+	</div>
+</div>
 
 <include file="Index/foot" />
 <script src="_JSPATH_/datedropper.min.js"></script>

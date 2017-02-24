@@ -1,14 +1,14 @@
-				<div class="col-md-2">
+				<div class="col-md-2" id="accordion" role="tablist" aria-multiselectable="true">
 					<div class="list-group xs-left-group">
-			      <a href="javascript:;" class="list-group-item" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1"><i class="glyphicon glyphicon-picture"></i> 图片类处理</a>
+			      <a href="javascript:;" class="list-group-item" data-toggle="collapse" data-target="#collapse1" data-parent="#nav-list" aria-expanded="true" aria-controls="collapse1"><i class="glyphicon glyphicon-picture"></i> 图片类处理</a>
 			      <div id="collapse1" class="xs-collapse-a collapse in">
 			        <a href="{:U('Imgcut/index')}" class="list-group-item" data-hover="Imgcut">图片裁剪</a>
 			        <a href="{:U('Imgcut/imgcompress')}" class="list-group-item" data-hover="Imgcompress">图片压缩</a>
 			      </div>
 			    </div>
 			    <div class="list-group xs-left-group">
-			      <a href="javascript:;" class="list-group-item" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2"><i class="glyphicon glyphicon-lock"></i> 转码加密类处理</a>
-			      <div id="collapse2" class="xs-collapse-a collapse in">
+			      <a href="javascript:;" class="list-group-item" data-toggle="collapse" data-target="#collapse2" data-parent="#nav-list" aria-expanded="true" aria-controls="collapse2"><i class="glyphicon glyphicon-lock"></i> 转码加密类处理</a>
+			      <div id="collapse2" class="xs-collapse-a collapse">
 			        <a href="{:U('Code/index')}" class="list-group-item" data-hover="unixtime">Unix时间戳转换</a>
 			        <a href="{:U('Code/utf8')}" class="list-group-item" data-hover="utf8">UTF-8转换</a>
 			        <a href="{:U('Code/chinese')}" class="list-group-item" data-hover="chinese">汉字简繁转换</a>
@@ -20,8 +20,8 @@
 			      </div>
 			    </div>
 			    <div class="list-group xs-left-group">
-			      <a href="javascript:;" class="list-group-item" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3"><i class="glyphicon glyphicon-leaf"></i> Geek类</a>
-			      <div id="collapse3" class="xs-collapse-a collapse in">
+			      <a href="javascript:;" class="list-group-item" data-toggle="collapse" data-target="#collapse3" data-parent="#nav-list" aria-expanded="true" aria-controls="collapse3"><i class="glyphicon glyphicon-leaf"></i> Geek类</a>
+			      <div id="collapse3" class="xs-collapse-a collapse">
 			        <a href="{:U('Geek/index')}" class="list-group-item" data-hover="jschange">任何JS代码转<br>文字表情(^_^)</a>
 			      </div>
 			    </div>
