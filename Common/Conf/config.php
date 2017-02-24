@@ -34,12 +34,12 @@ return array(
 
 	//设置前台图片上传格式
 	'HOME_UPIMG' => array(
-		'maxSize' => C('MAX_CUT_SIZE')*1024*1024,					//设置文件上传大小
+		'maxSize' => 20*1024*1024,					//设置文件上传大小
 		'exts' => array('jpg', 'gif', 'png', 'jpeg'),			//设置文件上传类型
 		'rootPath' => "./",																//设置文件上传根目录
 		'savePath' => 'Public/uploads/home/',							//设置附件上传（子）目录
 		'subName' => array('date','Ymd'),									//子目录命名格式
-		'saveName' => C('DNRTFN')													//文件命名防重复
+		'saveName' => date('YmdHis',time()).mt_rand()													//文件命名防重复
 	),
 
 	'DEFAULT_MODULE' => 'Home',		//设置请求的默认分组

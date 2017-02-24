@@ -12,26 +12,6 @@ class ImgcutController extends PublicController {
 		$this->display("imgcompress");
 	}
 	
-	public function imgcompressfun() {
-		//创建目录
-		$path = C("IMGCOMPRESS");
-		if(!is_dir($path)){
-			mkdir($path, 0755, true);
-		}
-		$num = trim(I('post.compressnum'));
-		$imgurl = trim(I('post.imgurl'));
-		$ext = empty(pathinfo($imgurl, PATHINFO_EXTENSION))?"gif":pathinfo($imgurl, PATHINFO_EXTENSION);
-		$newurl = $path.'/'.C('DNRTFN').'.'.$ext;
-		if( is_numeric( $num ) && $imgurl!='' ){
-			$image = new \Think\Image(\Think\Image::IMAGE_IMAGICK);
-			$image->open( './'.$imgurl );
-			$image->save($newurl, null, $num);
-			$this->ajaxReturn( ltrim($newurl, './') );
-		}else{
-			$this->ajaxReturn( 404 );
-		}
-	}
-	
 	public function imgup() {
 		if( $_FILES['file']['error'] == "0" ){
 			$upload = new \Think\Upload( C('HOME_UPIMG') );	// 实例化上传类
@@ -64,6 +44,26 @@ class ImgcutController extends PublicController {
 			$image = new \Think\Image(\Think\Image::IMAGE_IMAGICK);
 			$image->open( './'.$imgurl );
 			$image->crop($width, $height, $x1, $y1)->save($newurl);
+			$this->ajaxReturn( ltrim($newurl, './') );
+		}else{
+			$this->ajaxReturn( 404 );
+		}
+	}
+	
+	public function imgcompressfun() {
+		//创建目录
+		$path = C("IMGCOMPRESS");
+		if(!is_dir($path)){
+			mkdir($path, 0755, true);
+		}
+		$num = trim(I('post.compressnum'));
+		$imgurl = trim(I('post.imgurl'));
+		$ext = empty(pathinfo($imgurl, PATHINFO_EXTENSION))?"gif":pathinfo($imgurl, PATHINFO_EXTENSION);
+		$newurl = $path.'/'.C('DNRTFN').'.'.$ext;
+		if( is_numeric( $num ) && $imgurl!='' ){
+			$image = new \Think\Image(\Think\Image::IMAGE_IMAGICK);
+			$image->open( './'.$imgurl );
+			$image->save($newurl, null, $num);
 			$this->ajaxReturn( ltrim($newurl, './') );
 		}else{
 			$this->ajaxReturn( 404 );
