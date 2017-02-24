@@ -95,7 +95,7 @@
 /*end*/
 
 /*imgcompress*/
-.list-group-item[data-hover="Imgcompress"]:after{
+.list-group-item[data-hover="Imgcompress"]:after,.list-group-item[data-hover="financial"]:after{
 	content: "（未完成）";
 }
 /*end*/
