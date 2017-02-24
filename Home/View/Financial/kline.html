@@ -160,7 +160,27 @@
 		                symbol: ['none', 'none'],
 		                data: [
 		                    [
-		                    	
+		                        {
+		                            name: '最大到最小',
+		                            type: 'min',
+		                            valueDim: 'lowest',
+		                            symbol: 'circle',
+		                            symbolSize: 10,
+		                            label: {
+		                                normal: {show: false},
+		                                emphasis: {show: false}
+		                            }
+		                        },
+		                        {
+		                            type: '最大',
+		                            valueDim: 'highest',
+		                            symbol: 'circle',
+		                            symbolSize: 10,
+		                            label: {
+		                                normal: {show: false},
+		                                emphasis: {show: false}
+		                            }
+		                        }
 		                    ],
 		                    {
 		                        name: '最小收盘',
