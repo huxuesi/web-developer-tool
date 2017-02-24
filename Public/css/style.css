@@ -56,6 +56,10 @@
 /*leftnav*/
 .xs-left-group{
 	margin-bottom: 0;
+	background: none;
+	border: none;
+	border-radius: 0;
+	box-shadow: none;
 }
 .xs-left-group:last-child{
 	margin-bottom: 20px;
