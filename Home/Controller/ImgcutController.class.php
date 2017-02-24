@@ -21,7 +21,7 @@ class ImgcutController extends PublicController {
 		$num = trim(I('post.compressnum'));
 		$imgurl = trim(I('post.imgurl'));
 		$ext = empty(pathinfo($imgurl, PATHINFO_EXTENSION))?"gif":pathinfo($imgurl, PATHINFO_EXTENSION);
-		$newurl = $path.'/'.date('Ymd',time()).time().mt_rand().'.'.$ext;
+		$newurl = $path.'/'.C('DNRTFN').'.'.$ext;
 		if( is_numeric( $num ) && $imgurl!='' ){
 			$image = new \Think\Image(\Think\Image::IMAGE_IMAGICK);
 			$image->open( './'.$imgurl );
@@ -59,7 +59,7 @@ class ImgcutController extends PublicController {
 		$y1 = trim(I('post.y1'));
 		$imgurl = trim(I('post.imgurl'));
 		$ext = empty(pathinfo($imgurl, PATHINFO_EXTENSION))?"gif":pathinfo($imgurl, PATHINFO_EXTENSION);
-		$newurl = $path.'/'.date('Ymd',time()).time().mt_rand().'.'.$ext;
+		$newurl = $path.'/'.C('DNRTFN').'.'.$ext;
 		if( is_numeric( $width ) && is_numeric( $height ) && is_numeric( $x1 ) && is_numeric( $y1 ) && $imgurl!='' ){
 			$image = new \Think\Image(\Think\Image::IMAGE_IMAGICK);
 			$image->open( './'.$imgurl );
@@ -83,7 +83,7 @@ class ImgcutController extends PublicController {
 					$this->ajaxReturn( ltrim($remoteurl, C('FULL_HOST')) );
 				}else{
 					$ext = empty(pathinfo($remoteurl, PATHINFO_EXTENSION))?"gif":pathinfo($remoteurl, PATHINFO_EXTENSION);
-					$newurl = $path.'/'.date('Ymd',time()).time().mt_rand().'.'.$ext;
+					$newurl = $path.'/'.C('DNRTFN').'.'.$ext;
 					$imgdownload = new \Org\Net\Http();
 					$imgdownload->curlDownload($remoteurl, $newurl);
 					$this->ajaxReturn( ltrim($newurl, './') );

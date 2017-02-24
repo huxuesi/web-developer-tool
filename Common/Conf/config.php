@@ -8,10 +8,12 @@ return array(
 	'MAX_UPLOAD_SIZE' => 20,
 	//允许处理图片最大值  M
 	'MAX_CUT_SIZE' => 7,
-
-	'IMGOUT' => "./Public/uploads/imgout/".date("Ymd",time()),
-	'IMGDOWN' => "./Public/uploads/download/".date("Ymd",time()),
-	'IMGCOMPRESS' => "./Public/uploads/compress/".date("Ymd",time()),
+	//生成的目录
+	'IMGOUT' => './Public/uploads/imgout/'.date('Ymd',time()),
+	'IMGDOWN' => './Public/uploads/download/'.date('Ymd',time()),
+	'IMGCOMPRESS' => './Public/uploads/compress/'.date('Ymd',time()),
+	//生成随机不重复文件名
+	'DNRTFN' => date('YmdHis',time()).mt_rand(),
 
 	//显示调试信息
 	'SHOW_PAGE_TRACE' => false,
@@ -32,12 +34,12 @@ return array(
 
 	//设置前台图片上传格式
 	'HOME_UPIMG' => array(
-		'maxSize' => C('MAX_CUT_SIZE')*1024*1024,														//设置文件上传大小
+		'maxSize' => C('MAX_CUT_SIZE')*1024*1024,					//设置文件上传大小
 		'exts' => array('jpg', 'gif', 'png', 'jpeg'),			//设置文件上传类型
 		'rootPath' => "./",																//设置文件上传根目录
 		'savePath' => 'Public/uploads/home/',							//设置附件上传（子）目录
 		'subName' => array('date','Ymd'),									//子目录命名格式
-		'saveName' => date('Ymd',time()).time().mt_rand()	//文件命名防重复
+		'saveName' => C('DNRTFN')													//文件命名防重复
 	),
 
 	'DEFAULT_MODULE' => 'Home',		//设置请求的默认分组
