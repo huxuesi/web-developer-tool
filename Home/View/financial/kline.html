@@ -1,0 +1,30 @@
+<include file="Index/head" title="股票k线图" />
+
+<div class="container-fluid">
+	<div class="row pb25">
+		<include file="Index/leftnav" />
+		<div class="col-md-10">
+			<div class="box-border">
+				<h3>股票k线图 <small>股票k线图</small></h3>
+				<div class="row">
+					<form method="post" role="form">
+						<div class="col-md-6">
+							<div class="form-group">
+								
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<include file="Index/foot" />
+<script src="_JSPATH_/echarts.min.js"></script>
+<script>
+	$(function(){
+		document.querySelector(".list-group-item[data-hover='{$currnav}']").className += " active"
+		
+	})
+</script>
